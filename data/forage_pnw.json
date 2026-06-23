@@ -1,0 +1,990 @@
+{
+  "meta": {
+    "name": "Cascadia Wild-Edible Plant ID Dataset",
+    "version": "0.2.0",
+    "bioregion": "Pacific Northwest / Cascadia — Washington, Oregon, Idaho, southern British Columbia",
+    "purpose": "Grounding data for an educational plant-ID feature.",
+    "disclaimer": "EDUCATIONAL FIELD-ID AID ONLY. This data must never be used to tell a user a wild plant is safe to eat. The eat/don't-eat decision always stays with the user and a qualified field guide. Below a confidence threshold, suppress the species name entirely.",
+    "edibility_values": ["edible", "edible-with-prep", "caution"],
+    "severity_values": ["toxic", "deadly"],
+    "safety_notes": [
+      "Lethal-dose numbers are deliberately qualitative ('a small amount can be fatal'); specific thresholds in the literature are low/moderate confidence.",
+      "Do not conflate the two hemlocks: Conium (poison hemlock) = hairless purple-blotched stem, paralysis; Cicuta (water hemlock) = chambered yellow-oily root, seizures. Purple stem mottling belongs to Conium, NOT Cicuta.",
+      "Elderberry vs hemlock rule: elderberry is a WOODY shrub with bark, OPPOSITE leaves, and true berries; hemlocks are herbaceous (no bark) with ALTERNATE finely-divided leaves and dry seeds, never berries.",
+      "No plant bearing a true raspberry/blackberry-form aggregate drupelet fruit is dangerously poisonous in North America — but still teach the fruit form so users don't over-generalize.",
+      "Idaho range is LOW confidence for the wet-westside species (salmonberry, red huckleberry, salal); they are chiefly coastal / west of the Cascade crest.",
+      "Red baneberry is the #1 deadly lookalike for nearly every red/dark forest berry (huckleberries, bearberry, bunchberry, soapberry, highbush cranberry) and its berries may be RED or WHITE — ID by GROWTH FORM (soft herb with compound toothed leaves + dark-eyed raceme vs woody shrub/mat), never by color.",
+      "Highest-stakes confusion is common camas vs death camas: identical when not flowering, intermixed in the same meadows, and cooking does NOT detoxify a misidentified death-camas bulb. Flower color (blue vs cream/white) is the only reliable field separator — harvest only in bloom.",
+      "Carrot-family (Apiaceae) caution: watercress and cow parsnip share habitat with deadly water hemlock and poison hemlock. Never present any wild umbel-flowered carrot-family plant as edible without expert hands-on confirmation.",
+      "Cattail vs yellow flag iris: the toxic iris rhizome is exactly the part most likely mistaken for the edible cattail rhizome — never ID cattail by leaves alone and never taste-test to ID.",
+      "Several species are kept as edibility 'caution' because preparation or a deadly lookalike makes casual foraging unsafe (camas, cattail, wapato, soapberry, kinnikinnick, sheep sorrel, redwood sorrel, cow parsnip, Cascade Oregon grape).",
+      "Excluded: 'youth-on-age' (Tolmiea menziesii) was dropped from the edible set — its only food record is a single bitter tribal account; not a credibly documented edible."
+    ],
+    "sources_general": [
+      "Pojar & MacKinnon, Plants of the Pacific Northwest Coast",
+      "Burke Herbarium Image Collection (University of Washington)",
+      "USDA Forest Service FEIS / USDA PLANTS",
+      "WSU & OSU Extension; Washington Native Plant Society (WNPS)",
+      "WSU, Selected Poisonous Plants of the Pacific Northwest: https://wpcdn.web.wsu.edu/extension/uploads/sites/54/2019/05/SelectedPoisonousPlantsOfThePacificNW_Kerr-PoisonousPlants1007-2005.pdf"
+    ],
+    "verification_note": "Several WSU/OSU pages block automated fetch (HTTP 403); those facts were cross-corroborated via Burke, USDA/FEIS, WNPS, NPS, CDC, NCBI/PMC, Cornell. A human should open the WSU/OSU/BLM source pages directly to confirm exact wording before this data is relied on in production."
+  },
+
+  "species": [
+    {
+      "id": "salmonberry",
+      "common_name": "Salmonberry",
+      "scientific_name": "Rubus spectabilis",
+      "edibility": "edible",
+      "edible_part": "Ripe aggregate berry (orange to red to dark reddish-purple, raspberry-form); young spring shoots, peeled.",
+      "preparation": "Berries raw OK. Shoots peeled, eaten raw or steamed before they turn woody.",
+      "season": "Berries early May to late July (earliest-fruiting PNW Rubus); shoots in spring.",
+      "habitat": "Moist coastal forests, streambanks, seeps, wetland edges; dense thickets; wet shade.",
+      "range": "Strong on the wet westside (W. WA, W. OR, coastal/S. BC). Uncommon/local in Idaho (edge of range).",
+      "toxic_lookalikes": [],
+      "benign_lookalikes": ["Thimbleberry (Rubus parviflorus) — edible", "Red raspberry — edible"],
+      "safety_caveat": "No deadly lookalike — orange raspberry-form berry with magenta flowers and 3 leaflets is nearly unique. Avoid sprayed/roadside plants. Flavor varies plant-to-plant; that is normal, not toxicity.",
+      "source": ["https://pnwplants.wsu.edu/PlantDisplay.aspx?PlantID=280", "https://www.fs.usda.gov/wildflowers/plant-of-the-week/rubus_spectabilis.shtml"]
+    },
+    {
+      "id": "red_huckleberry",
+      "common_name": "Red huckleberry",
+      "scientific_name": "Vaccinium parvifolium",
+      "edibility": "edible",
+      "edible_part": "Ripe bright-red berry only.",
+      "preparation": "Raw OK (tart); also jam/syrup. No cooking needed.",
+      "season": "Mid–late summer (~July–September).",
+      "habitat": "Conifer-forest understory; characteristically grows from rotting stumps / nurse logs; acidic humus.",
+      "range": "Common west of the Cascade crest (WA, OR, SW/coastal BC). Sparse/largely absent in arid interior Idaho — range confidence LOW for ID.",
+      "toxic_lookalikes": [
+        {
+          "common_name": "Red baneberry",
+          "scientific_name": "Actaea rubra",
+          "severity": "deadly",
+          "why_confused": "Red berry color.",
+          "how_to_tell_apart": "Baneberry is a soft herb with large toothed compound leaves and glossy berries in ONE upright terminal cluster, each berry with a dark 'eye' (stigma scar). Huckleberry is a woody twiggy shrub with tiny simple leaves and berries hanging singly from leaf axils, with no eye."
+        },
+        {
+          "common_name": "Red elderberry",
+          "scientific_name": "Sambucus racemosa",
+          "severity": "toxic",
+          "why_confused": "Red berries on a shrub.",
+          "how_to_tell_apart": "Elderberry has large pinnately compound leaves and dense cone-shaped clusters of hundreds of tiny berries; huckleberry has small simple leaves and single hanging berries."
+        }
+      ],
+      "safety_caveat": "Safe-ID rule: red huckleberries hang SINGLY from a woody, green angular-stemmed shrub with small simple leaves. Berries in an upright cluster on a herbaceous plant = baneberry — do not eat.",
+      "source": ["https://research.fs.usda.gov/feis/species-reviews/vacpar", "https://www.wnps.org/native-plant-directory/346:vaccinium-parvifolium"]
+    },
+    {
+      "id": "salal",
+      "common_name": "Salal",
+      "scientific_name": "Gaultheria shallon",
+      "edibility": "edible",
+      "edible_part": "Ripe dull blue-black berry (fleshy calyx, slightly hairy/bumpy surface); young leaves as mild tea.",
+      "preparation": "Raw OK (sweet, mealy, seedy); also dried cakes, jam, syrup.",
+      "season": "Late summer into fall (~July–September, persisting).",
+      "habitat": "Dominant evergreen understory in moist-to-dry conifer forest; peatlands, dunes, coastal bluffs; salt-tolerant.",
+      "range": "Very common west of the Cascades (WA, OR, coastal/SW BC). Largely absent interior/eastern Idaho — range confidence LOW for ID.",
+      "toxic_lookalikes": [
+        {
+          "common_name": "Bittersweet nightshade",
+          "scientific_name": "Solanum dulcamara",
+          "severity": "toxic",
+          "why_confused": "Dark berries in disturbed/edge habitat.",
+          "how_to_tell_apart": "Nightshade is a soft sprawling/climbing vine with purple star flowers and smooth glossy berries; salal is a woody evergreen shrub with leathery toothed leaves and a HAIRY berry on a hairy reddish stalk."
+        }
+      ],
+      "safety_caveat": "No close deadly lookalike in Cascadia. Confirm a woody evergreen leathery-leaved shrub with a hairy berry on a hairy stalk to rule out a smooth-skinned nightshade.",
+      "source": ["https://www.uwb.edu/wetland/plants/gaultheria-shallon", "https://thewholeu.uw.edu/2025/07/22/edible-berries-of-the-pacific-northwest/"]
+    },
+    {
+      "id": "tall_oregon_grape",
+      "common_name": "Tall Oregon grape",
+      "scientific_name": "Berberis aquifolium",
+      "synonyms": ["Mahonia aquifolium"],
+      "edibility": "edible",
+      "edible_part": "Ripe dusty blue-black berries in grape-like clusters. (Yellow roots/inner bark are berberine-rich — medicinal, NOT food.)",
+      "preparation": "Berries raw OK but intensely sour/seedy — usually cooked into jelly/syrup or mixed with sweeter berries (traditionally salal). Roots are not a food (GI upset; contraindicated in pregnancy and with some medications).",
+      "season": "Yellow flowers early spring; berries late summer–fall (sweeter after frost).",
+      "habitat": "Evergreen shrub of open forests, edges, rocky slopes, clearings; sun to part shade.",
+      "range": "Native and widespread across WA, OR, ID, and into S. BC — one of the few here genuinely occurring in interior/eastern ID and east of the Cascades. Confidence HIGH WA/OR, MODERATE-HIGH ID/BC.",
+      "toxic_lookalikes": [
+        {
+          "common_name": "Bittersweet nightshade",
+          "scientific_name": "Solanum dulcamara",
+          "severity": "toxic",
+          "why_confused": "Both in edge/disturbed habitat; purple flowers and green berries confuse novices.",
+          "how_to_tell_apart": "Nightshade is a soft sprawling/climbing vine with purple star flowers and smooth glossy berries; Oregon grape is a stiff woody shrub with glossy spiny holly-like compound leaves and dusty-blue berries in grape clusters."
+        },
+        {
+          "common_name": "Deadly nightshade (belladonna)",
+          "scientific_name": "Atropa belladonna",
+          "severity": "deadly",
+          "why_confused": "Dark berries; present but uncommon in Cascadia (naturalized in disturbed ground, esp. Seattle area). Frequency confidence MODERATE.",
+          "how_to_tell_apart": "Belladonna is a soft herb with solitary purple-brown bell flowers and a single shiny black berry seated in a green 5-pointed star calyx — no spiny holly leaves, no grape clusters."
+        }
+      ],
+      "safety_caveat": "One rule separates Oregon grape from all toxic dark berries: it is a woody shrub with stiff glossy spine-toothed HOLLY-LIKE compound leaves and dusty-blue berries in grape-like clusters. Do not confuse culinary berry use with the medicinal berberine root.",
+      "source": ["https://extension.wsu.edu/wrlp/forestfarming/crops/oregongrape/", "https://www.nps.gov/articles/000/oregon-grape.htm", "https://horticulture.oregonstate.edu/weed/bittersweet-nightshade"]
+    },
+    {
+      "id": "thimbleberry",
+      "common_name": "Thimbleberry",
+      "scientific_name": "Rubus parviflorus",
+      "edibility": "edible",
+      "edible_part": "Ripe soft red dome/thimble-shaped aggregate berry (hollow when picked); young shoots peeled.",
+      "preparation": "Raw OK (very soft, seedy — eat fresh, dried, or as jam).",
+      "season": "White flowers April–July; berries ~July–September.",
+      "habitat": "Forest openings/edges, thickets, meadows, clearings, riparian; sea level to subalpine; tolerates more sun and drier sites than salmonberry.",
+      "range": "Widespread and common in all four areas — both sides of the Cascades, throughout OR, common in ID (esp. northern/mountain forests), and BC.",
+      "toxic_lookalikes": [],
+      "benign_lookalikes": ["Red raspberry — edible", "Salmonberry — edible"],
+      "safety_caveat": "Arguably the safest in this set. Diagnostic: THORNLESS stems (unique among PNW Rubus) plus large soft fuzzy maple-shaped (5-lobed palmate) leaves. Teach thornless + maple-leaf + hollow-red-cap fruit together so beginners don't over-trust 'fuzzy maple leaf' alone.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Rubus+parviflorus", "https://www.fs.usda.gov/wildflowers/plant-of-the-week/rubus_parviflorus.shtml"]
+    },
+    {
+      "id": "red_elderberry",
+      "common_name": "Red elderberry",
+      "scientific_name": "Sambucus racemosa",
+      "edibility": "caution",
+      "edible_part": "RIPE BERRIES ONLY, and only after cooking AND straining out the seeds. Seeds, stems, bark, leaves, roots, flowers, and unripe/green berries are all toxic.",
+      "preparation": "MANDATORY: (1) fully ripe, (2) cooked, AND (3) seed-strained. Raw red berries are bitter, nausea-inducing, considered poisonous. More contentious than blue elder — multiple sources (WNPS, USDA plant guide) state the red fruit 'should not be eaten' and may carry higher toxin levels. For a safety-critical app: never present as raw-edible; when in doubt, treat as toxic.",
+      "toxicity": "Cyanogenic glycosides (sambunigrin, prunasin) release hydrogen cyanide in the gut. Symptoms: nausea, vomiting, diarrhea, dizziness, weakness; severe cases cyanosis, confusion, hypotension. Cooking substantially reduces glycosides.",
+      "season": "Flowers April–May; bright-red CONE/pyramidal (not flat-topped) berry clusters ripen ~June–August.",
+      "habitat": "Moist forests, edges, streambanks, clearings, roadsides; very common.",
+      "range": "Most common elderberry on the NW coast; abundant throughout WA/OR/ID/S. BC, both sides of the Cascades.",
+      "toxic_lookalikes": [
+        {
+          "common_name": "Western water hemlock",
+          "scientific_name": "Cicuta douglasii",
+          "severity": "deadly",
+          "why_confused": "Foragers handling roots/stems of wetland plants; hemlock has white flower umbels.",
+          "how_to_tell_apart": "Elderberry is a WOODY shrub with bark, OPPOSITE leaves, and true berries; water hemlock is herbaceous with ALTERNATE finely-divided leaves, white umbels, dry seeds (no berries), and a chambered root. See toxic_reference."
+        },
+        {
+          "common_name": "Poison hemlock",
+          "scientific_name": "Conium maculatum",
+          "severity": "deadly",
+          "why_confused": "White-umbel herb in the same disturbed/streambank habitat.",
+          "how_to_tell_apart": "Elderberry is woody with berries; poison hemlock is a herb with a hairless purple-blotched stem and dry seeds. See toxic_reference."
+        }
+      ],
+      "safety_caveat": "NEVER raw. Gate on ripe + cooked + seeds removed. All vegetative parts and unripe berries are poisonous; treat anyone digging roots or using stems as a poisoning risk.",
+      "source": ["https://www.wnps.org/native-plant-directory/8-sambucus-racemosa", "https://extension.oregonstate.edu/catalog/em-9446-play-it-safe-when-preserving-elderberries", "https://plants.sc.egov.usda.gov/DocumentLibrary/plantguide/pdf/fs_sara2.pdf"]
+    },
+    {
+      "id": "blue_elderberry",
+      "common_name": "Blue elderberry",
+      "scientific_name": "Sambucus cerulea",
+      "synonyms": ["Sambucus nigra ssp. cerulea", "Sambucus caerulea"],
+      "edibility": "caution",
+      "edible_part": "RIPE cooked berries (blue with powdery white bloom); flowers (elderflower). NOT raw berries, NOT stems/leaves/bark/roots, NOT unripe (green/red-stage) berries.",
+      "preparation": "Cook ripe berries (jam, syrup, pie, wine). Strip berries off stems — never press leaves/stems into juice. High-acid fruit; cans with standard high-acid recipes (OSU). The more palatable / less-contentious of the two PNW species, but the cook-before-eating rule still applies.",
+      "toxicity": "Same cyanogenic-glycoside class. OSU: all parts contain cyanogenic glycosides; cooking the berries/juice eliminates the risk. Roots highest; leaves/stems/bark/seeds/unripe berries toxic. Note: in the 1983 CDC raw-juice illness case, acute cyanide was not confirmed — illness was attributed to including leaves/stems in raw juice. Safe framing: don't press leaves/stems and cook the juice.",
+      "season": "Flat-topped white flower umbels late spring–summer; powdery-blue berries ripen late summer–fall (Aug–Oct).",
+      "habitat": "Open sites, edges, streamsides, roadsides, dry-to-moist slopes/valleys.",
+      "range": "Widespread WA/OR/ID + S. BC; more common east of the Cascades / in drier interior than red elder, but present throughout.",
+      "toxic_lookalikes": [
+        {
+          "common_name": "Western water hemlock",
+          "scientific_name": "Cicuta douglasii",
+          "severity": "deadly",
+          "why_confused": "White flower umbels in wet habitat.",
+          "how_to_tell_apart": "Elderberry is woody with bark, opposite leaves, true berries; water hemlock is herbaceous with alternate divided leaves and a chambered root. See toxic_reference."
+        },
+        {
+          "common_name": "Poison hemlock",
+          "scientific_name": "Conium maculatum",
+          "severity": "deadly",
+          "why_confused": "White-umbel herb in disturbed habitat.",
+          "how_to_tell_apart": "Poison hemlock has a hairless purple-blotched stem and dry seeds, not berries on a woody shrub. See toxic_reference."
+        }
+      ],
+      "safety_caveat": "Cook ripe berries; never eat raw stems/leaves/unripe berries; never press leaves/stems into juice. Use flowers only, not green stems.",
+      "source": ["https://plants.sc.egov.usda.gov/DocumentLibrary/plantguide/pdf/cs_sanic5.pdf", "https://extension.oregonstate.edu/catalog/em-9446-play-it-safe-when-preserving-elderberries", "https://www.cdc.gov/mmwr/preview/mmwrhtml/00000311.htm"]
+    },
+    {
+      "id": "stinging_nettle",
+      "common_name": "Stinging nettle",
+      "scientific_name": "Urtica dioica",
+      "edibility": "edible-with-prep",
+      "edible_part": "Young tender spring leaves / growing tips (best ~4–10 in tall, before flowering). Avoid mature/flowering plants (gritty cystoliths).",
+      "preparation": "CRITICAL: must be cooked, dried, or thoroughly crushed before eating. Heat (blanch 30–60 s / steam / boil) or full drying neutralizes the stinging hairs (silica trichomes injecting histamine, acetylcholine, serotonin, formic/oxalic acids). Handle with gloves until cooked. For a safety app: cook or dry — do not eat raw.",
+      "season": "Tender window ~Feb–April/May; flowers May–Sept (stop eating leaves after).",
+      "habitat": "Moist rich soils — shady lowlands, streambanks, riparian thickets, ditches, disturbed ground, forest edges; sea level to subalpine; dense rhizomatous colonies.",
+      "range": "Widespread both sides of the Cascades and throughout OR, ID, S. BC.",
+      "toxic_lookalikes": [],
+      "benign_lookalikes": ["Dead-nettles (Lamium spp.) — don't sting", "Hedge-nettles/mints (Stachys) — square stems, don't sting, showy lipped flowers"],
+      "safety_caveat": "No deadly lookalikes — the sting is a near-foolproof self-ID. Always cook/dry; gloves; young pre-flower growth only; avoid roadside/sprayed plants (bioaccumulates). People on blood thinners/BP/diuretic meds should consult a clinician.",
+      "source": ["https://extension.oregonstate.edu/catalog/em-9373-wild-edibles-stinging-nettle", "https://hortsense.cahnrs.wsu.edu/fact-sheet/weeds-stinging-nettle-urtica-dioica/", "https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Urtica+dioica"]
+    },
+    {
+      "id": "miners_lettuce",
+      "common_name": "Miner's lettuce",
+      "scientific_name": "Claytonia perfoliata",
+      "synonyms": ["Montia perfoliata"],
+      "edibility": "edible",
+      "edible_part": "Entire above-ground plant — leaves (including the perfoliate disk leaf), stems, flowers.",
+      "preparation": "Edible raw (salads); can be lightly steamed. No cooking needed for safety.",
+      "season": "Cool-season annual; best late winter–spring (~Feb–May); flowers ~May–July, then toughens/reddens.",
+      "habitat": "Moist, shady/cool sites — open to shaded forest, thickets, meadows, streambanks, disturbed ground; many substrates including rock crevices/scree.",
+      "range": "Native and common throughout Cascadia, both sides of the Cascades; BC south through OR to CA, east to ID/Rockies.",
+      "toxic_lookalikes": [],
+      "safety_caveat": "No relevant toxic lookalike in Cascadia — the mature PERFOLIATE disk leaf (round cup-like leaf with the flower stalk emerging through its center) is essentially unique. Don't ID from the juvenile linear-leaf rosette; wait for the perfoliate leaf + central flower stalk. Contains soluble oxalates (usually low, can accumulate in N-rich/fertilized soils) — eat in moderation; people with kidney stones/disease should limit; wash well and avoid runoff/roadside sites.",
+      "source": ["https://www.fs.usda.gov/database/feis/plants/forb/claper/all.html", "https://burkeherbarium.org/imagecollection/browse.php?Genus=Claytonia"]
+    },
+    {
+      "id": "trailing_blackberry",
+      "common_name": "Trailing blackberry",
+      "scientific_name": "Rubus ursinus",
+      "edibility": "edible",
+      "edible_part": "Ripe shiny-black aggregate berry (red unripe). Note: dioecious — only female plants fruit.",
+      "preparation": "Raw OK; fresh, baked, jam. Widely considered the best-flavored PNW blackberry.",
+      "season": "White-pink flowers spring; fruit mid–late summer (~July–August).",
+      "habitat": "Forest edges, clearings, clearcuts, open woods, roadsides, disturbed ground; low trailing/scrambling vine.",
+      "range": "Native BC to CA, coast inland to the Cascades and into central ID. The only blackberry native to BC; present in all four areas.",
+      "toxic_lookalikes": [],
+      "benign_lookalikes": [
+        "Himalayan blackberry (Rubus armeniacus, syn. R. bifrons / R. discolor / R. procerus) — invasive but edible; massive arching shrub, stout ridged thorny canes, ~5 leaflets with pale undersides",
+        "Cutleaf/evergreen blackberry (Rubus laciniatus) — invasive but edible; deeply dissected leaflets",
+        "Black raspberry (Rubus leucodermis) — edible; glaucous whitish-blue canes, hollow-cored fruit"
+      ],
+      "safety_caveat": "Native-vs-invasive is an ecology/quality question, not safety — all are edible. No aggregate-drupelet (raspberry/blackberry-form) fruit in North America is dangerously poisonous. Avoid roadside/sprayed plants (invasives are often sprayed); watch fine thorns. Fruitless plants are normal (males don't fruit).",
+      "source": ["https://depts.washington.edu/propplnt/Plants/RUUR.htm", "https://landscapeplants.oregonstate.edu/plants/rubus-ursinus", "https://www.nwcb.wa.gov/images/weeds/Rubu_armeniacus.pdf"]
+    },
+    {
+      "id": "evergreen_huckleberry",
+      "common_name": "Evergreen huckleberry",
+      "scientific_name": "Vaccinium ovatum",
+      "edibility": "edible",
+      "edible_part": "Ripe purplish/bluish-black berry (4–7 mm), in short axillary racemes.",
+      "preparation": "Raw OK; also cooked, dried, frozen.",
+      "season": "Fruit ~July–October (one of the last PNW huckleberries to ripen; often best after frost).",
+      "habitat": "Low-elevation conifer forest, edges, dunes, coastal salt-spray; evergreen leathery-leaved shrub 0.5–3 m.",
+      "range": "W. WA, W. OR (Coast Range), coastal S. BC. Idaho: ABSENT (high confidence) — a reported ID 'evergreen huckleberry' is a misID.",
+      "toxic_lookalikes": [
+        {"common_name": "Red baneberry", "scientific_name": "Actaea rubra", "severity": "deadly", "why_confused": "Glossy clustered forest berries (red OR white).", "how_to_tell_apart": "Baneberry is a soft herb with large compound toothed leaves and berries in one upright raceme, each with a dark eye; this is a woody evergreen shrub with racemose berries and no eye."},
+        {"common_name": "Black twinberry", "scientific_name": "Lonicera involucrata", "severity": "toxic", "why_confused": "Shiny black forest berries.", "how_to_tell_apart": "Twinberry has OPPOSITE leaves and black berries in pairs cradled by reddish-purple bracts; huckleberry leaves alternate."}
+      ],
+      "benign_lookalikes": ["Salal — edible", "Other Vaccinium — edible"],
+      "safety_caveat": "Deadly baneberry shares this understory; ID by growth form (woody evergreen shrub), never by berry color. Only PNW Vaccinium with leathery evergreen leaves + racemose flowers.",
+      "source": ["https://research.fs.usda.gov/feis/species-reviews/vacova", "https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Vaccinium+ovatum"]
+    },
+    {
+      "id": "black_huckleberry",
+      "common_name": "Black / mountain huckleberry",
+      "scientific_name": "Vaccinium membranaceum",
+      "synonyms": ["Vaccinium globulare"],
+      "edibility": "edible",
+      "edible_part": "Ripe dark purple/black berry (7–9 mm), non-glaucous/shiny, borne SINGLY in leaf axils.",
+      "preparation": "Raw OK; jams/syrups; traditionally dried into cakes.",
+      "season": "Fruit mid-summer through late August/fall.",
+      "habitat": "Dry-to-moist conifer forest, openings, avalanche chutes; mid/high elevation (most abundant ~4,000–6,000 ft); deciduous shrub with shredding gray bark.",
+      "range": "WA (both sides), OR Cascades, ID (HIGH — Idaho state fruit), S. BC.",
+      "toxic_lookalikes": [
+        {"common_name": "Red baneberry", "scientific_name": "Actaea rubra", "severity": "deadly", "why_confused": "Shares moist forest; berries red OR white.", "how_to_tell_apart": "Huckleberry has woody shredding-bark stems and single axillary dark non-glaucous berries with no eye; baneberry is a soft herb with compound toothed leaves and a raceme of dark-eyed berries."}
+      ],
+      "benign_lookalikes": ["Other blue Vacciniums (glaucous bloom)", "Red huckleberry"],
+      "safety_caveat": "Reject any berries in a cluster/raceme on a soft non-woody stem, any berry with a black eye, or any red/white glossy berries (baneberry).",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Vaccinium+membranaceum", "https://idfg.idaho.gov/species/taxa/56452"]
+    },
+    {
+      "id": "oval_leaf_blueberry",
+      "common_name": "Oval-leaf blueberry",
+      "scientific_name": "Vaccinium ovalifolium",
+      "synonyms": ["Vaccinium alaskaense (treated as part of a hybridizing complex)"],
+      "edibility": "edible",
+      "edible_part": "Ripe bluish/purplish-black berry with whitish bloom, solitary in leaf axils; crown-shaped calyx scar.",
+      "preparation": "Raw commonly acceptable (tart); also cooked/dried.",
+      "season": "Fruit ~mid-July through August/September.",
+      "habitat": "Cool moist conifer forest, bog/meadow edges; acidic soil; submontane to subalpine; strongly ANGLED twigs.",
+      "range": "WA (both sides + Olympics), OR Cascades, S. BC. Idaho: panhandle, MODERATE confidence (peripheral).",
+      "toxic_lookalikes": [
+        {"common_name": "Red baneberry", "scientific_name": "Actaea rubra", "severity": "deadly", "why_confused": "Shared moist shaded forest.", "how_to_tell_apart": "Woody shrub with small simple ENTIRE oval leaves + solitary blue-black berry with crown calyx scar, vs herb with compound toothed leaves + erect raceme of red/dark-eyed berries."}
+      ],
+      "benign_lookalikes": ["V. alaskaense", "V. membranaceum (toothed leaves)"],
+      "safety_caveat": "Decisive checks = growth form, leaf margin (entire vs toothed/compound), fruit arrangement. Never key on color. (V. ovalifolium / V. alaskaense taxonomy is unsettled — treat as a complex.)",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Vaccinium+ovalifolium", "https://research.fs.usda.gov/feis/species-reviews/vacovl"]
+    },
+    {
+      "id": "cascade_oregon_grape",
+      "common_name": "Cascade Oregon grape",
+      "scientific_name": "Berberis nervosa",
+      "synonyms": ["Mahonia nervosa"],
+      "edibility": "caution",
+      "edible_part": "Blue glaucous berries only. Yellow roots/inner bark are berberine-rich — medicinal/dye, NOT food.",
+      "preparation": "Berries raw possible but very tart; standard = cooked + sweetened (jelly/wine; high pectin, often combined with salal).",
+      "season": "Berries ripen ~July–August, persisting into fall.",
+      "habitat": "Understory of submontane-montane conifer/mixed forest; pinnately compound spiny holly-like leaves (9–21 leaflets).",
+      "range": "Chiefly W. WA + coast, W. Cascades & NE OR, S. BC. Idaho: rare disjunct panhandle only (LOW-MODERATE).",
+      "toxic_lookalikes": [
+        {"common_name": "English holly", "scientific_name": "Ilex aquifolium", "severity": "toxic", "why_confused": "Spiny glossy holly-like leaves; invasive in same forests.", "how_to_tell_apart": "Oregon grape leaves are pinnately COMPOUND (each leaflet one central vein); holly leaves are SIMPLE/net-veined with bright RED berries."},
+        {"common_name": "Buckthorn", "scientific_name": "Rhamnus cathartica / Frangula alnus", "severity": "toxic", "why_confused": "Dark blue-black berries of similar color.", "how_to_tell_apart": "Buckthorn berries grow directly off twigs on simple-leaved shrubs, not in upright clusters on spiny compound foliage."}
+      ],
+      "benign_lookalikes": ["Tall Oregon grape (Berberis aquifolium) — edible", "Salal"],
+      "safety_caveat": "Berberine concentrated in yellow roots/inner bark — not casual food; avoid in pregnancy and for jaundiced infants. Confirm compound spiny leaflets + blue glaucous berry clusters; rule out red-berried holly and blue-berried buckthorn.",
+      "source": ["https://research.fs.usda.gov/feis/species-reviews/mahner", "https://landscapeplants.oregonstate.edu/plants/mahonia-nervosa"]
+    },
+    {
+      "id": "saskatoon_serviceberry",
+      "common_name": "Saskatoon / serviceberry",
+      "scientific_name": "Amelanchier alnifolia",
+      "edibility": "edible",
+      "edible_part": "Ripe dark purple pome (~10–14 mm), often glaucous. Eat ripe flesh; do NOT crush or eat large quantities of seeds.",
+      "preparation": "Ripe fruit raw OK; jams/dried. Flesh is low-toxicity; the hazard is crushing/grinding the cyanogenic seeds.",
+      "season": "Fruit ~June–early August.",
+      "habitat": "Open woods, canyons, hillsides, thickets; sea level to subalpine.",
+      "range": "Both sides of crest in WA; throughout OR; ID (HIGH, native and common statewide); S. BC.",
+      "toxic_lookalikes": [
+        {"common_name": "Cascara", "scientific_name": "Frangula purshiana", "severity": "toxic", "why_confused": "Dark round drupes on a native shrub.", "how_to_tell_apart": "Cascara fruit in tight clusters along stems, ripens late summer/fall; serviceberry fruit in loose terminal clusters with a persistent 5-lobed calyx scar, ripens June–July."},
+        {"common_name": "Buckthorn", "scientific_name": "Rhamnus cathartica / Frangula alnus", "severity": "toxic", "why_confused": "Dark round berry-like fruit in clusters.", "how_to_tell_apart": "Buckthorn often thorny with inconspicuous flowers; serviceberry is unarmed with showy white 5-petaled spring flowers and a persistent calyx scar."}
+      ],
+      "benign_lookalikes": ["Huckleberries/blueberries"],
+      "safety_caveat": "Eat only ripe flesh; do not eat/crush seeds or make seed extracts (seeds/leaves/bark/twigs are cyanogenic). Best discriminator from toxic buckthorns: white 5-petaled flower + persistent calyx scar + loose terminal clusters.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Amelanchier+alnifolia", "https://plants.usda.gov/home/plantProfile?symbol=AMAL2"]
+    },
+    {
+      "id": "wild_strawberry",
+      "common_name": "Wild / woodland strawberry",
+      "scientific_name": "Fragaria vesca",
+      "synonyms": ["Fragaria virginiana (companion native species)"],
+      "edibility": "edible",
+      "edible_part": "Ripe red aggregate accessory fruit; young leaves for tea.",
+      "preparation": "Raw OK.",
+      "season": "Fruit late spring–summer.",
+      "habitat": "F. vesca — moist woods, streambanks, meadows; F. virginiana — open woods to gravelly meadows.",
+      "range": "Both species BC to CA; WA both sides; ID (HIGH, both native).",
+      "toxic_lookalikes": [],
+      "benign_lookalikes": ["Mock/Indian strawberry (Potentilla indica) — yellow flower, bland, NOT poisonous", "Cinquefoils (Potentilla) — yellow flower, dry fruit, harmless"],
+      "safety_caveat": "No deadly confusion. Rule: 3 leaflets + WHITE 5-petaled flower + juicy sweet fragrant red fruit = true strawberry. A yellow flower means mock strawberry (bland) or cinquefoil (dry) — not poisonous, just not a strawberry.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Fragaria+vesca", "https://www.wnps.org/native-plant-directory/122-fragaria-virginiana"]
+    },
+    {
+      "id": "black_raspberry",
+      "common_name": "Black raspberry / blackcap",
+      "scientific_name": "Rubus leucodermis",
+      "edibility": "edible",
+      "edible_part": "Ripe reddish-purple to black aggregate fruit (~12 mm); drupelets separate cleanly leaving a hollow cap.",
+      "preparation": "Raw OK.",
+      "season": "Fruit ~mid–late summer.",
+      "habitat": "Thickets, forest edges/openings, fields, hillsides; low–mid elevation.",
+      "range": "Both sides of crest in WA; ID (HIGH); BC to S. CA, east to Rockies.",
+      "toxic_lookalikes": [],
+      "benign_lookalikes": ["Other native Rubus (salmonberry, thimbleberry, trailing blackberry, red raspberry) — all edible"],
+      "safety_caveat": "Diagnostic: strongly glaucous (whitish-waxy) arching canes with hooked prickles; fruit separates leaving a hollow cap. No deadly lookalike for an aggregate raspberry-form fruit ONCE the Rubus genus is positively confirmed — never use that rule as standalone clearance for any dark berry.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Rubus+leucodermis", "https://landscapeplants.oregonstate.edu/plants/rubus-leucodermis"]
+    },
+    {
+      "id": "wild_red_raspberry",
+      "common_name": "Wild red raspberry",
+      "scientific_name": "Rubus idaeus subsp. strigosus",
+      "synonyms": ["Rubus strigosus"],
+      "edibility": "edible",
+      "edible_part": "Ripe red aggregate fruit; drupelets separate leaving a hollow cap.",
+      "preparation": "Raw OK.",
+      "season": "Fruit mid–late summer.",
+      "habitat": "Woodland to open rocky mountain slopes, clearings, streambanks, talus.",
+      "range": "Chiefly east of crest in WA; ID (HIGH); AK to CA, east across N. America.",
+      "toxic_lookalikes": [],
+      "benign_lookalikes": ["Other red-fruited native Rubus — all edible"],
+      "safety_caveat": "Erect shrub with peeling papery cinnamon bark and bristly canes; confirm a true raspberry-type aggregate (hollow cap on picking); eat only ripe fruit.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Rubus+idaeus", "https://research.fs.usda.gov/feis/species-reviews/rubida"]
+    },
+    {
+      "id": "soapberry",
+      "common_name": "Soapberry / soopolallie",
+      "scientific_name": "Shepherdia canadensis",
+      "edibility": "caution",
+      "edible_part": "Ripe red-to-amber translucent berries (~4–6 mm; bitter).",
+      "preparation": "Raw is strongly bitter/soapy (saponins); traditionally whipped with water + sweetener into frothy 'sxusem' / Indian ice cream. Quantity raw → GI upset.",
+      "season": "Berries ripen summer (~June–August).",
+      "habitat": "Moderately dry open-to-wooded conifer areas, openings, slopes; nitrogen-fixing pioneer; an east-side/drier plant.",
+      "range": "Both sides of crest in WA; OR; ID (HIGH); BC.",
+      "toxic_lookalikes": [
+        {"common_name": "Red baneberry", "scientific_name": "Actaea rubra", "severity": "deadly", "why_confused": "Red berries in forest/montane habitat.", "how_to_tell_apart": "Soapberry has simple oval leaves with rusty/silvery scurfy (brown-dotted) undersides and OPPOSITE leaves; baneberry has compound toothed leaves and dark-eyed berries in an upright raceme."}
+      ],
+      "benign_lookalikes": ["Other buffaloberry/Shepherdia", "Currants"],
+      "safety_caveat": "Saponins cause foaming and GI upset (nausea/diarrhea) in quantity; bitterness is a natural deterrent. Foaming when mashed is nearly diagnostic. Not for large-quantity consumption.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Shepherdia+canadensis", "https://idfg.idaho.gov/species/taxa/55106"]
+    },
+    {
+      "id": "kinnikinnick",
+      "common_name": "Kinnikinnick / bearberry",
+      "scientific_name": "Arctostaphylos uva-ursi",
+      "edibility": "caution",
+      "edible_part": "Red berries (7–10 mm, dry/mealy/near-flavorless). Leaves (arbutin) are a traditional tea/smoke material, NOT food.",
+      "preparation": "Berries are dry/mealy; usually cooked or used in preserves to be palatable. Leaf preparations are medicinal/diuretic — not casual food, cautions for prolonged use/pregnancy.",
+      "season": "Berries late summer–fall, often persisting into winter.",
+      "habitat": "Coastal bluffs/prairies, rocky balds, dry subalpine meadows, dry forest openings; low trailing/mat-forming evergreen shrub with small leathery spoon leaves.",
+      "range": "Circumboreal; both sides of crest in WA; OR; ID (HIGH); BC.",
+      "toxic_lookalikes": [
+        {"common_name": "Red baneberry", "scientific_name": "Actaea rubra", "severity": "deadly", "why_confused": "Bright-red berries in forest/montane habitat.", "how_to_tell_apart": "Bearberry is a low woody evergreen MAT with small simple untoothed spoon leaves and dull mealy scattered berries (no dark eye); baneberry is an erect herb with compound toothed leaves and dark-eyed berries in a raceme."},
+        {"common_name": "Bittersweet nightshade", "scientific_name": "Solanum dulcamara", "severity": "toxic", "why_confused": "Glossy red ovoid berries.", "how_to_tell_apart": "Nightshade is a scrambling/climbing vine with purple star flowers and drooping berry clusters in wet/disturbed sites; bearberry is a dry-habitat ground mat with urn-shaped pink-white flowers."}
+      ],
+      "benign_lookalikes": ["Lingonberry (Vaccinium vitis-idaea) — edible", "Bog cranberry (V. oxycoccos) — edible"],
+      "safety_caveat": "Berries bland/mealy; the real hazard is misID of a red berry. Confirm a low woody evergreen mat + simple untoothed leathery leaves + no dark eye; rule out baneberry and nightshade. Leaves are not casual food.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Arctostaphylos+uva-ursi", "https://poisonousplants.cvmbs.colostate.edu/plant/89"]
+    },
+    {
+      "id": "highbush_cranberry",
+      "common_name": "Highbush cranberry / squashberry",
+      "scientific_name": "Viburnum edule",
+      "edibility": "edible-with-prep",
+      "edible_part": "Red/orange single-seeded drupes (1–1.5 cm). Not a true cranberry.",
+      "preparation": "Tart/acidic/astringent; cooked into jelly/sauce with the single large flat seed strained out; best after frost.",
+      "season": "Ripens late summer–fall; persists on the shrub.",
+      "habitat": "Moist woods/swamps, streambanks, wet thickets; OPPOSITE, shallowly 3-lobed maple-like toothed leaves.",
+      "range": "Both sides of crest in WA; OR; ID (HIGH); BC; AK to CA.",
+      "toxic_lookalikes": [
+        {"common_name": "Red baneberry", "scientific_name": "Actaea rubra", "severity": "deadly", "why_confused": "Red forest berries.", "how_to_tell_apart": "Highbush cranberry has OPPOSITE 3-lobed maple-like leaves and single-stalked drupe clusters; baneberry has compound toothed leaves and dark-eyed berries in a raceme. Easy to separate."}
+      ],
+      "benign_lookalikes": ["Guelder rose (V. opulus var. opulus) — more bitter, not toxic", "True cranberries (Vaccinium)"],
+      "safety_caveat": "Edible cooked; large seed + astringency make raw eating poor. Confirm opposite lobed maple-like leaves.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Viburnum+edule", "https://idfg.idaho.gov/species/taxa/59340"]
+    },
+    {
+      "id": "bunchberry",
+      "common_name": "Bunchberry",
+      "scientific_name": "Cornus unalaschkensis",
+      "synonyms": ["Cornus canadensis (treated together)"],
+      "edibility": "edible",
+      "edible_part": "Bright coral-red drupes (6–8 mm) in a tight terminal bunch.",
+      "preparation": "Raw OK but bland/mealy with small hard seeds; often better cooked. Unripe berries may cause mild stomach upset.",
+      "season": "Berries ripen late summer–fall.",
+      "habitat": "Moist woods, deep duff, bogs; low to subalpine; low carpet-forming perennial; WHORL of 4–6 dogwood-veined leaves.",
+      "range": "Both sides of crest in WA; OR; BC; AK to N. CA. Idaho: MODERATE-HIGH (C. canadensis).",
+      "toxic_lookalikes": [
+        {"common_name": "Red baneberry", "scientific_name": "Actaea rubra", "severity": "deadly", "why_confused": "Both low forest plants with clusters of bright red berries.", "how_to_tell_apart": "Bunchberry has a flat whorl of 4–6 simple oval dogwood-veined leaves and a tight low button-like cluster of round drupes (no dark eye); baneberry is taller with compound toothed leaflets and berries in an elongated erect raceme, each with a dark eye."}
+      ],
+      "benign_lookalikes": ["Wild strawberry", "Twinflower"],
+      "safety_caveat": "Bunchberry itself is bland/harmless but grows alongside DEADLY red baneberry — never harvest a red berry without confirming the whorl of simple dogwood-veined leaves and the absence of a dark eye / erect raceme.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Cornus+unalaschkensis", "https://research.fs.usda.gov/feis/species-reviews/corcan"]
+    },
+    {
+      "id": "wild_rose_hips",
+      "common_name": "Wild rose (rose hips)",
+      "scientific_name": "Rosa nutkana",
+      "synonyms": ["Rosa woodsii (companion species)"],
+      "edibility": "edible-with-prep",
+      "edible_part": "The fleshy outer rind/hypanthium of the ripe hip, and petals. NOT the inner achenes ('seeds') or the surrounding hairs.",
+      "preparation": "Rind raw or cooked. The achenes AND irritant hairs MUST be removed (halve and scoop, or cook and strain through fine mesh). Bletting after frost improves palatability.",
+      "season": "Hips ripen late summer through fall, persisting into winter.",
+      "habitat": "Thickets, shorelines, forest edges, riparian (R. nutkana); drier interior/sagebrush sites (R. woodsii).",
+      "range": "R. nutkana both sides of crest in WA, AK to CA; R. woodsii primarily east of Cascades on the Columbia Plateau. ID (HIGH for R. woodsii).",
+      "toxic_lookalikes": [],
+      "benign_lookalikes": ["Other roses (R. gymnocarpa, R. pisocarpa, R. canina) — edible hips, treated the same"],
+      "safety_caveat": "The hairs surrounding the achenes inside the hip are folk 'itching powder' — they irritate skin, mouth, throat, and the digestive lining if swallowed. ALL seeds and hairs must be removed before eating. Avoid hips from sprayed roadsides/ornamentals.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Rosa+nutkana", "https://research.fs.usda.gov/feis/species-reviews/roswoo"]
+    },
+    {
+      "id": "pacific_crabapple",
+      "common_name": "Pacific crabapple",
+      "scientific_name": "Malus fusca",
+      "synonyms": ["Pyrus fusca"],
+      "edibility": "edible-with-prep",
+      "edible_part": "Small fleshy pome (yellow to purplish-red, 1–1.6 cm). NOT the seeds, NOT the bark.",
+      "preparation": "Tart/sour; eaten raw or stored to soften/sweeten over time. Do not eat seeds in quantity (cyanogenic).",
+      "season": "Flowers Apr–May; fruit ripens late summer into fall, often persisting.",
+      "habitat": "Moist woods, swamps, streambanks, open canyons, estuary edges; sea level to moderate elevation.",
+      "range": "Chiefly WEST of crest; AK south through coastal BC/WA/OR to NW CA. Idaho: likely ABSENT.",
+      "toxic_lookalikes": [
+        {"common_name": "Black hawthorn", "scientific_name": "Crataegus douglasii", "severity": "toxic", "why_confused": "Similar small dark pome, similar habitat, both Rosaceae.", "how_to_tell_apart": "Cut the fruit — crabapple has an apple-like core with several small soft seeds; hawthorn has 1 (to few) rocklike stones a knife won't cut, and bears stout straight thorns. (Hawthorn flesh is itself edible — discard the stone.)"}
+      ],
+      "benign_lookalikes": ["Domestic apples/crabapples (Malus)", "Serviceberry"],
+      "safety_caveat": "Like all apples, the SEEDS contain amygdalin (cyanogenic when crushed) — eat flesh, not seeds; bark also cyanogenic. Verify an apple-like multi-seeded core to rule out hawthorn's single hard stone.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Malus+fusca", "https://botanicgardens.uw.edu/about/blog/2018/10/03/oct18-malus-fusca/"]
+    },
+    {
+      "id": "beaked_hazelnut",
+      "common_name": "Beaked hazelnut",
+      "scientific_name": "Corylus cornuta",
+      "edibility": "edible",
+      "edible_part": "The nut kernel inside the hard shell. The green bristly husk (involucre) is NOT edible and is the handling hazard.",
+      "preparation": "Kernels raw or roasted (roasting improves flavor/storage). Remove the bristly husk first — WEAR GLOVES.",
+      "season": "Nuts mature ~August–September.",
+      "habitat": "Mesic forest understory, edges, thickets, canyon bottoms; multi-stemmed shrub with simple doubly-toothed rounded alternate leaves.",
+      "range": "var. californica SW BC–W. WA/OR to C. CA; var. cornuta E. WA, N. ID (HIGH), W. MT.",
+      "toxic_lookalikes": [
+        {"common_name": "Horse chestnut / buckeye", "scientific_name": "Aesculus spp.", "severity": "toxic", "why_confused": "A smooth brown rounded 'nut' and the 'chestnut' name.", "how_to_tell_apart": "Aesculus seeds are much larger (2–5 cm) with a large pale scar, in a thick leathery/spiny capsule on a tree with opposite palmately-compound leaves; hazelnut is a small ~1–1.5 cm nut in a green bristly tubular husk on a shrub. No Aesculus is native to WA/ID — mainly an urban/ornamental confusion."}
+      ],
+      "benign_lookalikes": ["Cultivated filbert/hazelnut (Corylus avellana) — same edible nut"],
+      "safety_caveat": "PRIMARY hazard is handling: the green husk bristles embed in and irritate bare skin during harvest/de-husking — wear gloves. Tree-nut allergy caution applies.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Corylus+cornuta", "https://research.fs.usda.gov/feis/species-reviews/corcor"]
+    },
+    {
+      "id": "fireweed",
+      "common_name": "Fireweed",
+      "scientific_name": "Chamerion angustifolium",
+      "synonyms": ["Epilobium angustifolium", "Chamaenerion angustifolium"],
+      "edibility": "edible-with-prep",
+      "edible_part": "Young spring shoots (asparagus-like); young leaves and flowers. Old stems are tough/fibrous.",
+      "preparation": "Young shoots raw or cooked like asparagus. Field test: a fresh shoot snaps crisply.",
+      "season": "Shoots early spring after snowmelt (~Apr–May, elevation-dependent); flowers May–Sep. Narrow shoot window.",
+      "habitat": "Open/disturbed sites — burns (classic post-fire colonizer), clearcuts, meadows, roadsides, streambanks; sea level to subalpine.",
+      "range": "Circumboreal; WA both sides, OR, S. BC. Idaho: MODERATE-HIGH (principal post-fire species in N. Idaho).",
+      "toxic_lookalikes": [
+        {"common_name": "Spreading dogbane", "scientific_name": "Apocynum androsaemifolium", "severity": "toxic", "why_confused": "Plausible reddish spring-shoot confusion in shared disturbed habitat (lookalike pairing is LOW-confidence / not well documented).", "how_to_tell_apart": "Dogbane bleeds WHITE milky sap (fireweed has none — the most reliable test) and has opposite leaves and multiple branching stems; fireweed has alternate lance-shaped leaves on a single unbranched stalk."}
+      ],
+      "benign_lookalikes": ["Willowherbs (Epilobium spp.)"],
+      "safety_caveat": "The leafless shoot stage is the hardest to ID. Before eating any red-tinged spring shoot confirm: NO milky sap, ALTERNATE leaves, single unbranched stem. Milky sap or opposite leaves = discard (possible toxic dogbane).",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Chamerion+angustifolium", "https://research.fs.usda.gov/feis/species-reviews/chaang"]
+    },
+    {
+      "id": "dandelion",
+      "common_name": "Dandelion",
+      "scientific_name": "Taraxacum officinale",
+      "edibility": "edible-with-prep",
+      "edible_part": "Young basal-rosette leaves, flower heads/petals, roots, unopened buds.",
+      "preparation": "Young leaves raw; mature leaves better boiled (for bitterness, not toxicity).",
+      "season": "Flowers Mar–Oct (peak spring); leaves best early spring.",
+      "habitat": "Lawns, fields, pastures, roadsides, waste ground; sea level to alpine.",
+      "range": "Ubiquitous across WA/OR/S. BC; ID (HIGH).",
+      "toxic_lookalikes": [
+        {"common_name": "Hairy cat's-ear (false dandelion)", "scientific_name": "Hypochaeris radicata", "severity": "toxic", "why_confused": "Near-identical yellow head, rosette, milky sap (toxic to HORSES only; itself a human edible).", "how_to_tell_apart": "Cat's-ear has branched solid stalks with more than one head and hairy leaves; true dandelion has a single hollow scape with ONE head and smooth leaves."}
+      ],
+      "benign_lookalikes": ["Hawkbit, hawksbeard, sow thistle — non-deadly, mostly edible"],
+      "safety_caveat": "No deadly human lookalikes, but confirm the single-head / hollow-scape / basal-rosette signature. Avoid sprayed/roadside ground; caution with Asteraceae allergy or bile-duct obstruction.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Taraxacum+officinale", "https://research.fs.usda.gov/feis/species-reviews/taroff"]
+    },
+    {
+      "id": "chickweed",
+      "common_name": "Common chickweed",
+      "scientific_name": "Stellaria media",
+      "edibility": "edible-with-prep",
+      "edible_part": "Tender leaves, stems, small white flowers. Avoid wiry mature lower stems.",
+      "preparation": "Raw OK (salad, pesto) or lightly cooked. Saponins can cause GI upset in large quantities — moderation. Often advised to avoid in pregnancy.",
+      "season": "Cool-season annual; flowers ~Feb–Oct, often through mild lowland winters.",
+      "habitat": "Disturbed moist ground — gardens, fields, lawns, trail/forest edges; low sprawling stems.",
+      "range": "WA both sides; OR; S. BC; ID (HIGH presence).",
+      "toxic_lookalikes": [
+        {"common_name": "Scarlet pimpernel", "scientific_name": "Anagallis arvensis (Lysimachia arvensis)", "severity": "toxic", "why_confused": "Same low sprawling habit, small opposite oval leaves, same habitat; non-flowering plants look very alike.", "how_to_tell_apart": "Pimpernel has a SQUARE stem and sessile leaves with dark glandular dots underneath and salmon/orange/scarlet (or blue) flowers; chickweed has a ROUND stem with a single line of hairs that switches sides at each node, CLEAR sap, stalked dotless lower leaves, and white star flowers."},
+        {"common_name": "Petty spurge", "scientific_name": "Euphorbia peplus", "severity": "toxic", "why_confused": "Similar small weedy habit.", "how_to_tell_apart": "Spurge bleeds MILKY white sap (chickweed sap is clear) and has tiny greenish petalless flowers."}
+      ],
+      "benign_lookalikes": ["Mouse-ear chickweed (Cerastium fontanum) — benign, hairy all over"],
+      "safety_caveat": "Decisive step is ruling out scarlet pimpernel: confirm a round stem with a switching hair-line, CLEAR (not milky) sap, petiolate dotless lower leaves, and white star flowers. Square stems, dark-dotted sessile leaves, milky sap, or colored flowers are hard stops.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Stellaria+media", "https://plants.usda.gov/home/plantProfile?symbol=STME2"]
+    },
+    {
+      "id": "lambs_quarters",
+      "common_name": "Lamb's quarters",
+      "scientific_name": "Chenopodium album",
+      "edibility": "edible-with-prep",
+      "edible_part": "Young leaves/tender shoots/tops (~6–10 in tall), flower buds, mature seeds.",
+      "preparation": "Cooking advised; boiling reduces oxalic acid. Avoid large raw quantities.",
+      "season": "Greens spring–summer; flowers Jun–Sep; seeds late summer–fall.",
+      "habitat": "Disturbed/over-fertilized ground — fields, gardens, roadsides, waste lots.",
+      "range": "WA both sides; OR; ID (HIGH); S. BC.",
+      "toxic_lookalikes": [
+        {"common_name": "Black nightshade", "scientific_name": "Solanum nigrum / S. americanum", "severity": "toxic", "why_confused": "Young seedlings/rosettes resemble young lamb's quarters before flowering (riskiest at seedling stage).", "how_to_tell_apart": "Lamb's quarters has a white mealy/farinose 'flour-dusted' coating on new growth (rubs off), often a reddish stem streak, and goosefoot-toothed leaves, and NEVER makes berries; nightshade is smooth/glossy with white/violet flowers and green-to-black berries. Any berry = NOT lamb's quarters."}
+      ],
+      "benign_lookalikes": ["Other goosefoots (Chenopodium/Oxybasis)", "Saltbush (Atriplex)", "Amaranth/pigweed"],
+      "safety_caveat": "#1 hazard is young plants vs toxic black nightshade — confirm the mealy coating + goosefoot teeth and never eat any plant in this group bearing berries. Also accumulates NITRATES and OXALATES — caution for kidney stones, gout, pregnancy; boiling reduces oxalate.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Chenopodium+album", "https://plants.usda.gov/home/plantProfile?symbol=CHAL7"]
+    },
+    {
+      "id": "sheep_sorrel",
+      "common_name": "Sheep sorrel",
+      "scientific_name": "Rumex acetosella",
+      "edibility": "caution",
+      "edible_part": "Young leaves and tender stems; small reddish flowers as a tart garnish.",
+      "preparation": "Raw in small amounts (lemony) or cooked. Boiling and discarding the water reduces soluble oxalate. Moderation regardless.",
+      "season": "Leaves spring–fall (best young); flowers May–Aug.",
+      "habitat": "Disturbed open ground — balds, prairies, pastures, roadsides, lawns; acidic poor soils.",
+      "range": "Naturalized in all four regions; WA both sides; ID (HIGH).",
+      "toxic_lookalikes": [
+        {"common_name": "Italian arum (lords-and-ladies)", "scientific_name": "Arum italicum", "severity": "toxic", "why_confused": "Arrowhead/spade-shaped leaves echo sheep sorrel's hastate leaf; established in W. WA/OR.", "how_to_tell_apart": "Arum leaves are large (hand-sized), thick, glossy, often cream/silver-veined, on long fleshy petioles, producing a hooded spathe and orange-red berries and a burning taste; sheep sorrel leaves are small, thin, matte, plain green with two narrow backward lobes and a pleasant sour taste."}
+      ],
+      "benign_lookalikes": ["Docks (Rumex crispus, R. obtusifolius) — edible relatives, also oxalate-bearing"],
+      "safety_caveat": "OXALATE caveat — soluble oxalates (the sour taste). Moderation; particular concern for kidney stones/disease, gout, pregnancy. The toxic lookalike Arum italicum carries burning insoluble calcium-oxalate needles and bears a hood and berries (sorrel never does).",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Rumex+acetosella", "https://www.nwcb.wa.gov/weeds/italian-arum"]
+    },
+    {
+      "id": "redwood_sorrel",
+      "common_name": "Western / redwood sorrel",
+      "scientific_name": "Oxalis oregana",
+      "edibility": "caution",
+      "edible_part": "Leaves (trifoliate); flowers and stems also reported eaten.",
+      "preparation": "Raw in small amounts (lemony) or cooked. Moderation due to soluble oxalates; cooking + calcium-rich pairing reduces uptake.",
+      "season": "Foliage spring–fall; flowers Apr–Sep.",
+      "habitat": "Shaded, cool, moist conifer understory (Douglas-fir, coast redwood); deep-shade groundcover (leaves fold in sun).",
+      "range": "W. WA + Olympics + west-slope Cascades; OR Coast Range + W. Cascades; SW BC. Idaho: likely ABSENT (high confidence).",
+      "toxic_lookalikes": [
+        {"common_name": "Pacific poison oak", "scientific_name": "Toxicodendron diversilobum", "severity": "toxic", "why_confused": "Also trifoliate ('leaves of three') west of the Cascades — a CONTACT hazard.", "how_to_tell_apart": "Poison oak is a WOODY shrub/vine with larger oak-like lobed, often glossy reddish leaflets; redwood sorrel is a low non-woody groundcover with three small heart-shaped (notched) leaflets. Woody or oak-lobed = NOT sorrel; do not touch."}
+      ],
+      "benign_lookalikes": ["Clovers (oval leaflets, not sour)", "Yellow wood sorrels (Oxalis, same oxalate caveat)"],
+      "safety_caveat": "OXALATE caveat — moderation; avoid with kidney stones, gout, impaired kidney function. Also a contact caveat: do not confuse with poison oak (woody / oak-lobed).",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Oxalis+oregana"]
+    },
+    {
+      "id": "broadleaf_plantain",
+      "common_name": "Broadleaf plantain",
+      "scientific_name": "Plantago major",
+      "synonyms": ["Plantago lanceolata (narrowleaf, edible relative)"],
+      "edibility": "edible-with-prep",
+      "edible_part": "Leaves (young preferred); seeds also edible. Older leaves are fibrous.",
+      "preparation": "Young leaves raw; older/larger leaves tough — cook like spinach.",
+      "season": "Leaves spring–fall (young spring best); blooms Apr–Aug.",
+      "habitat": "Roadsides, lawns, fields, trampled disturbed ground; basal rosette with dense narrow flower spikes.",
+      "range": "Introduced, naturalized everywhere across PNW — WA, OR, S. BC, ID (HIGH, ubiquitous).",
+      "toxic_lookalikes": [
+        {"common_name": "Foxglove", "scientific_name": "Digitalis purpurea", "severity": "deadly", "why_confused": "First-year foxglove forms a ground-level rosette of soft veined leaves resembling a large plantain rosette; abundant in the same PNW roadsides/clearings.", "how_to_tell_apart": "Plantain leaves have 3–7 smooth PARALLEL veins base-to-tip, are hairless, with smooth/wavy edges; foxglove leaves are softly HAIRY (woolly underside) with a NETTED/pinnate vein pattern and finely toothed/scalloped margins. If in doubt, do not pick."}
+      ],
+      "benign_lookalikes": ["Narrowleaf plantain (P. lanceolata) — edible", "Dock rosettes"],
+      "safety_caveat": "The single most dangerous error is a young plantain rosette vs a first-year FOXGLOVE rosette (can be lethal). Confirm parallel venation and absence of soft hairs before handling. Avoid roadside/sprayed/dog-trafficked ground.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Plantago+major", "https://research.fs.usda.gov/feis/species-reviews/plamaj"]
+    },
+    {
+      "id": "watercress",
+      "common_name": "Watercress",
+      "scientific_name": "Nasturtium officinale",
+      "synonyms": ["Rorippa nasturtium-aquaticum"],
+      "edibility": "edible-with-prep",
+      "edible_part": "Tender leaves, young stems, leafy shoot tips (peppery mustard flavor).",
+      "preparation": "Best COOKED, not raw, from any wild/uncontrolled water — cooking destroys liver-fluke metacercariae and pathogens.",
+      "season": "Aerial growth year-round in mild open Cascadia streams; flowers May–Sep; best before flowering.",
+      "habitat": "Cold, slow-moving fresh water — spring seeps, stream/creek margins, irrigation ditches, ponds. SAME habitat as deadly water hemlock.",
+      "range": "Naturalized, both sides of crest in WA; OR; S. BC; ID (HIGH at state level).",
+      "toxic_lookalikes": [
+        {"common_name": "Western water hemlock", "scientific_name": "Cicuta douglasii", "severity": "deadly", "why_confused": "Exact same habitat, often intermingled with watercress.", "how_to_tell_apart": "Water hemlock has white flowers in umbrella UMBELS (vs watercress's racemes of tiny 4-petaled flowers) and a thick CHAMBERED rootstock oozing yellowish oily liquid; watercress has fine fibrous node roots and no chambers."},
+        {"common_name": "Poison hemlock", "scientific_name": "Conium maculatum", "severity": "deadly", "why_confused": "Common in moist ditches/streamsides, can grow adjacent.", "how_to_tell_apart": "Poison hemlock has a hollow hairless stem with PURPLE blotches and a rank/mousy smell; watercress stems are fleshy, green, unspotted, rooting at nodes, smelling of peppery cress."},
+        {"common_name": "Lesser water-parsnip", "scientific_name": "Berula erecta / Sium spp.", "severity": "toxic", "why_confused": "Apiaceae in the same cold streams; pinnate leaves resemble watercress when not flowering.", "how_to_tell_apart": "Umbels not racemes; a white ring/ridge around the leaf petiole base; more upright and sharply serrated."}
+      ],
+      "benign_lookalikes": ["Fool's watercress (Apium nodiflorum) — an Apiaceae stepping-stone to a dangerous error"],
+      "safety_caveat": "DUAL CRITICAL WARNING. (1) DEADLY PROXIMITY: shares cold-stream/seep/ditch habitat with water hemlock and poison hemlock, often intermingled — never harvest without positively excluding every umbel-flowered carrot-family plant nearby. (2) RAW-WATER PARASITE: raw wild watercress is the classic vector for liver fluke (Fasciola) and can carry Giardia — cook thoroughly.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Nasturtium+officinale", "https://www.ars.usda.gov/pacific-west-area/logan-ut/poisonous-plant-research/docs/water-hemlock-cicuta-douglasii/"]
+    },
+    {
+      "id": "pacific_spring_beauty",
+      "common_name": "Pacific spring beauty / candy flower",
+      "scientific_name": "Claytonia sibirica",
+      "synonyms": ["Montia sibirica"],
+      "edibility": "edible-with-prep",
+      "edible_part": "Above-ground leaves, stems, flowers (like true miner's lettuce, C. perfoliata).",
+      "preparation": "Raw OK (salad) or cooked. Cooking reduces soluble oxalate; moderation.",
+      "season": "Tender greens in spring; blooms Mar–Sep.",
+      "habitat": "Moist shady places — forest floors, streambanks, seeps, wet meadows; fleshy, opposite heart-shaped stem leaves, white-to-pink candy-striped flowers.",
+      "range": "Native AK to CA, both sides of crest in WA, across S. BC. Idaho: MODERATE/LOW (SE margin of range only).",
+      "toxic_lookalikes": [],
+      "benign_lookalikes": ["C. perfoliata (true miner's lettuce) — edible", "C. cordifolia — edible", "Chickweed (Stellaria) — edible"],
+      "safety_caveat": "Contains soluble OXALATES (relative C. perfoliata is documented high in oxalate); large/chronic consumption can stress kidneys. Moderation; avoid with kidney/oxalate issues; cook to reduce.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Claytonia+sibirica"]
+    },
+    {
+      "id": "cow_parsnip",
+      "common_name": "Cow parsnip",
+      "scientific_name": "Heracleum maximum",
+      "synonyms": ["Heracleum lanatum"],
+      "edibility": "caution",
+      "edible_part": "Young PEELED leaf-stalks and flower-bud stalks, harvested in spring BEFORE flowering; dried seeds (spice). NOT the root, NOT mature/flowering stalks.",
+      "preparation": "MUST PEEL + cooking recommended — unpeeled stalks cause itchy mouth/blistering. Handle with GLOVES; wash skin immediately after contact. Raw is not advised for non-experts.",
+      "season": "Stalks/buds early Apr–late Jun before flowering; flowers Jun–Aug.",
+      "habitat": "Moist areas — wet meadows, streambanks, roadsides, forest edges; robust single-stemmed perennial 1–3 m with broad maple-like lobed leaves.",
+      "range": "WA both sides; OR; S. BC; AK to CA. Idaho: MEDIUM-HIGH.",
+      "toxic_lookalikes": [
+        {"common_name": "Poison hemlock", "scientific_name": "Conium maculatum", "severity": "deadly", "why_confused": "Same family, tall stout stems, white compound umbels, coarse foliage, moist disturbed habitat.", "how_to_tell_apart": "Poison hemlock stems are hairless, smooth, with PURPLE blotches and finely ferny lacy foliage and a rank/mousy smell; cow parsnip stems are fuzzy/woolly-hairy, solid green (no purple), with broad maple-like rounded-lobed leaves."},
+        {"common_name": "Western water hemlock", "scientific_name": "Cicuta douglasii", "severity": "deadly", "why_confused": "Apiaceae, white umbels, overlapping wet habitats.", "how_to_tell_apart": "Water hemlock has narrow lance-shaped 2–3x pinnately divided feathery leaves and a chambered root; cow parsnip has broad maple-like leaflets and a non-chambered fuzzy stem."},
+        {"common_name": "Giant hogweed", "scientific_name": "Heracleum mantegazzianum", "severity": "toxic", "why_confused": "Same genus, nearly identical gestalt — the most common dangerous confusion.", "how_to_tell_apart": "Hogweed is much larger (to ~14 ft) with conspicuously mottled purple/reddish bristly stems and deeply incised jagged leaflets; cow parsnip is smaller with solid-green soft-woolly stems and rounded leaf lobes. (Hogweed is a regulated invasive — report it.)"}
+      ],
+      "benign_lookalikes": ["Wild parsnip (yellow flowers)", "Angelica (rounded umbels)"],
+      "safety_caveat": "TWO independent dangers. (1) PHOTOTOXIC SAP: furanocoumarins cause phytophotodermatitis (burning, blistering) with sun exposure — gloves, long sleeves, wash skin immediately. (2) DEADLY-LOOKALIKE RISK: routinely confused with poison hemlock and water hemlock (either can KILL with a small amount) and giant hogweed (severe burns). Never consume any wild Apiaceae without expert hands-on confirmation.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Heracleum+maximum", "https://hortsense.cahnrs.wsu.edu/fact-sheet/weeds-cow-parsnip-heracleum-maximum/"]
+    },
+    {
+      "id": "springbank_clover",
+      "common_name": "Springbank clover",
+      "scientific_name": "Trifolium wormskioldii",
+      "edibility": "edible-with-prep",
+      "edible_part": "Rhizomes (long fleshy white underground stems) — a documented traditional Indigenous root food.",
+      "preparation": "Traditionally dug in fall, cleaned, and pit-cooked (steamed underground), often with Pacific silverweed; frequently dried for winter storage.",
+      "season": "Harvested autumn; rhizomes stored for winter.",
+      "habitat": "Coastal dunes, tidal/estuarine marshes, moist meadows, streambanks; stoloniferous perennial with reddish-purple flower heads.",
+      "range": "BC south along the Pacific Coast, east to ID. WA chiefly west of the Cascades. Idaho: MODERATE-HIGH presence, but the food tradition is coastal.",
+      "toxic_lookalikes": [],
+      "benign_lookalikes": ["Clovers (Trifolium repens/pratense) — benign", "Wood sorrel (Oxalis) — sour, oxalate caution, not deadly; true clover has rounded/oval leaflets vs Oxalis heart-shaped notched"],
+      "safety_caveat": "A well-documented traditional Indigenous food of many Northwest Coast peoples. Confirm species ID; harvest sustainably (estuarine populations are limited).",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Trifolium+wormskioldii", "https://plants.usda.gov/home/plantProfile?symbol=TRWO"]
+    },
+    {
+      "id": "common_camas",
+      "common_name": "Common camas",
+      "scientific_name": "Camassia quamash",
+      "synonyms": ["Quamassia quamash", "Camassia esculenta"],
+      "edibility": "caution",
+      "edible_part": "Bulb (deep-seated, tear-drop shaped). Historically a major NW Indigenous staple food.",
+      "preparation": "Traditionally pit-roasted/steamed for an extended period (often 24–48+ hours), converting inulin to digestible fructose. Raw bulbs are not eaten. CRITICAL: cooking does NOT detoxify a misidentified death-camas bulb — preparation is irrelevant if species ID is wrong.",
+      "season": "Flowering April–June (the ONLY reliable ID window).",
+      "habitat": "Open moist meadows, prairies, grassy slopes that dry by late spring; lowland to mid-elevation.",
+      "range": "S. BC to CA, WA/OR/ID, east to MT/UT/WY. HIGH at species level.",
+      "toxic_lookalikes": [
+        {"common_name": "Death camas", "scientific_name": "Toxicoscordion venenosum", "severity": "deadly", "why_confused": "Grows INTERMIXED in the same meadows; bulbs and non-flowering grass-like leaves are essentially IDENTICAL — the single most dangerous confusion in this dataset.", "how_to_tell_apart": "FLOWER COLOR is the only reliable field cue — camas = pale-to-deep BLUE/VIOLET; death camas = CREAM/WHITE to greenish. Bulbs are NOT diagnostic and neither has an onion odor. When not flowering, the two cannot be reliably separated."}
+      ],
+      "safety_caveat": "Positively identify ONLY when in flower and the flowers are unambiguously blue/violet. A single mixed-in white-flowered death-camas bulb can be fatal. When not flowering, do not harvest.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Camassia+quamash", "https://research.fs.usda.gov/feis/species-reviews/camqua"]
+    },
+    {
+      "id": "common_cattail",
+      "common_name": "Common cattail",
+      "scientific_name": "Typha latifolia",
+      "edibility": "caution",
+      "edible_part": "Young shoots (inner core), rhizomes (starchy), pollen (flour extender), immature green flower spikes.",
+      "preparation": "Shoots raw/cooked; immature spikes boiled/roasted; rhizomes baked/roasted or processed to starch; pollen as flour substitute.",
+      "season": "Shoots spring; spikes late spring/early summer; pollen early–mid summer; rhizomes fall–early spring.",
+      "habitat": "Marshes, ponds, lakeshores, slow water, wet ditches; sea level to mid-elevation.",
+      "range": "Throughout North America; both sides of crest in WA. HIGH.",
+      "toxic_lookalikes": [
+        {"common_name": "Yellow flag iris", "scientific_name": "Iris pseudacorus", "severity": "toxic", "why_confused": "Both form clumps of erect sword-like leaves in the same wetland margins; before flowering the rosettes look similar.", "how_to_tell_apart": "Cattail leaves are D-shaped/half-round (spongy), wrapping a rounded stalk, with no flat fan and no reddish base; iris leaves are flat in one plane with a raised midrib, in a flat basal fan, base often pink/red-tinged. The toxic iris rhizome is exactly the part most likely mistaken for the edible cattail rhizome."}
+      ],
+      "safety_caveat": "Chief hazard is confusing non-flowering cattail with yellow flag iris — vegetative-only ID is unreliable; never sample-taste to ID. Wetland foraging also carries pollutant/contamination risk in tubers/rhizomes.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Typha+latifolia", "https://kingcounty.gov/en/legacy/services/environment/animals-and-plants/noxious-weeds/weed-identification/yellow-flag-iris"]
+    },
+    {
+      "id": "wapato",
+      "common_name": "Wapato / broadleaf arrowhead",
+      "scientific_name": "Sagittaria latifolia",
+      "synonyms": ["duck potato"],
+      "edibility": "caution",
+      "edible_part": "Starchy tubers/corms at the ends of underground rhizomes — NOT the leaves/stems/above-ground parts.",
+      "preparation": "Cooked only — never raw (raw tubers are acrid). Boiled, roasted, or baked.",
+      "season": "Flowers July–September; tubers traditionally harvested late summer–autumn into winter.",
+      "habitat": "Wetlands — ditches, ponds, lake margins, marshes, shallow standing water and mud; emergent.",
+      "range": "WA both sides (HIGH), OR (HIGH), S. BC (HIGH). Idaho: UNCONFIRMED (IDFG lists occurrence 'Unknown/Undetermined').",
+      "toxic_lookalikes": [
+        {"common_name": "Arrow arum", "scientific_name": "Peltandra virginica", "severity": "toxic", "why_confused": "Arrow-shaped (sagittate) leaf silhouette closely resembles Sagittaria; both emergent wetland plants. (Peltandra is mainly eastern, uncommon in the PNW.)", "how_to_tell_apart": "VENATION — Peltandra is pinnate-netted with a marginal collecting vein looping the edge; Sagittaria has several prominent near-parallel veins radiating from the base, no netted marginal vein. FLOWERS — Peltandra is an aroid spathe-and-spadix; Sagittaria has whorls of showy 3-petaled white flowers. Only Sagittaria makes edible terminal tubers."}
+      ],
+      "benign_lookalikes": ["Other Sagittaria (e.g., S. cuneata) — congener confusion, not poisoning"],
+      "safety_caveat": "Dominant danger is misidentification by leaf shape. Calcium-oxalate aroids can cause severe oral/GI irritation and airway swelling. Confirm via flowers, venation, and the presence of true terminal tubers; when uncertain, do not consume.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Sagittaria+latifolia", "https://idfg.idaho.gov/species/taxa/51786"]
+    }
+  ],
+
+  "toxic_reference": [
+    {
+      "id": "red_baneberry",
+      "common_name": "Red baneberry",
+      "scientific_name": "Actaea rubra",
+      "severity": "deadly",
+      "toxin": "Ranunculin → protoanemonin (the buttercup toxin), most concentrated in roots/berries.",
+      "why_dangerous": "Burning mouth/throat, severe GI inflammation, vomiting, dizziness, irregular pulse. Poisonous, especially to children. Honesty flag: NO confirmed human fatalities from A. rubra in North America (documented fatalities are the European A. spicata); bitter taste limits intake. State 'poisonous — do not eat' without asserting a hard lethal dose.",
+      "key_id": "Soft herbaceous perennial (NOT woody), 40–80 cm; large 2–3-ternate sharply toothed maple-like compound leaves; white flowers in ONE dense terminal raceme; glossy smooth berries in ONE upright cluster, usually red (a white-fruited form exists — color not reliable); diagnostic: each berry has a dark dot/'eye' (stigma scar).",
+      "confused_with": ["Red huckleberry (Vaccinium parvifolium)", "other red forest fruits"],
+      "how_to_tell_apart": "Huckleberry is a woody shrub with dull berries borne singly along the branches and no eye; baneberry is a soft leafy herb with glossy berries in one upright cluster, each with a dark eye.",
+      "do_not_confuse": "Glossy red (or white) berries in a single upright cluster atop a soft leafy plant, each with a dark eye = BANEBERRY.",
+      "habitat": "Moist shaded woods, streambanks, riparian; low to subalpine.",
+      "range": "Native and widespread across WA/OR/ID/S. BC.",
+      "antidote": "None specific; supportive care.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Actaea+rubra", "https://research.fs.usda.gov/feis/species-reviews/actrub", "https://poisonousplants.ansci.cornell.edu/toxicagents/ranunculoside.html"]
+    },
+    {
+      "id": "western_water_hemlock",
+      "common_name": "Western water hemlock",
+      "scientific_name": "Cicuta douglasii",
+      "severity": "deadly",
+      "toxin": "Cicutoxin (C17 polyacetylene), concentrated in roots/tubers (most toxic in early spring), present in all parts. One of the most violently toxic plants in North America.",
+      "why_dangerous": "GABA-A antagonist: violent vomiting → grand mal seizures / status epilepticus → death by respiratory failure within ~15 min to a few hours. No antidote (supportive care + benzodiazepines). A small piece of root can kill an adult.",
+      "key_id": "Most reliable: CHAMBERED rootstock — sliced lengthwise the tuberous base shows horizontal internal chambers with cross-partitions, exuding yellowish oily liquid (edible carrot-family roots are solid, never chambered). Secondary: lateral leaf veins end in the notches between teeth, not at tooth tips (needs a hand lens, unreliable on young growth, never a 'safe' test). Leaves 1–3x pinnately compound, sharply serrate; stout hollow hairless stem; white compound umbels; 0.5–2 m.",
+      "confused_with": ["Blue/red elderberry", "Water parsnip (Sium suave)", "Pacific water parsley (Oenanthe sarmentosa, itself toxic)", "wild carrot", "cow parsnip"],
+      "how_to_tell_apart": "Never eat the root of any white-flowered wetland carrot-family plant. Elderberry is a woody shrub with opposite leaves and berries; water hemlock is herbaceous with alternate divided leaves and dry seeds. Purple stem mottling belongs to Conium (poison hemlock), NOT Cicuta.",
+      "do_not_confuse": "A sliced root with hollow horizontal chambers and oily yellow fluid = water hemlock; a thumbnail-sized piece can kill; no antidote.",
+      "habitat": "Obligate wetland — wet meadows, marshes, streambanks, ditches, pond margins, wet pasture.",
+      "range": "Native throughout WA/OR/ID/S. BC. (Allied C. maculata var. angustifolia east of the Cascades — treat as one deadly pair.)",
+      "antidote": "None; benzodiazepines for seizures + supportive care.",
+      "source": ["https://www.ars.usda.gov/pacific-west-area/logan-ut/poisonous-plant-research/docs/water-hemlock-cicuta-douglasii/", "https://hortsense.cahnrs.wsu.edu/fact-sheet/weeds-waterhemlock-western-cicuta-douglasii/", "https://pubmed.ncbi.nlm.nih.gov/26415905/"]
+    },
+    {
+      "id": "poison_hemlock",
+      "common_name": "Poison hemlock",
+      "scientific_name": "Conium maculatum",
+      "severity": "deadly",
+      "toxin": "Piperidine alkaloids — coniine and γ-coniceine (dominant in young plants). All parts toxic, including dried; seeds/roots most potent.",
+      "why_dangerous": "Curare-like neuromuscular block → ascending paralysis → respiratory arrest (the 'death of Socrates'), mind clear until late. A small amount can be lethal.",
+      "key_id": "Most reliable: smooth, completely hairless, hollow stem with purple/red/maroon blotches and streaks at all stages. Strong unpleasant musty/'mousy' odor when crushed (do not taste). Bright-green fern-like 3–4x pinnately divided leaves; white compound umbels; biennial, year-2 stalk often 6–10 ft.",
+      "confused_with": ["Wild carrot / Queen Anne's lace (Daucus carota)", "parsley", "cilantro", "anise", "fennel", "dill", "parsnip", "cow parsnip"],
+      "how_to_tell_apart": "Queen Anne's lace has a HAIRY stem, no purple blotches, is 1–3 ft, and smells of carrot. Poison hemlock has a hairless purple-blotched stem and a musty smell. No safe taste test. (Distinct from water hemlock: coniine/paralysis vs cicutoxin/seizures.)",
+      "do_not_confuse": "A lacy white-flowered 'wild carrot' with a smooth hairless stem bearing purple blotches/streaks = POISON HEMLOCK.",
+      "habitat": "Introduced; common and widespread — roadsides, ditches, canals, fence lines, waste/disturbed ground, streambanks; rich moist soil.",
+      "range": "Class B noxious weed in WA and OR; regulated in ID/BC. Widespread in the PNW.",
+      "antidote": "None specific; ventilatory/supportive care.",
+      "source": ["https://www.nwcb.wa.gov/weeds/poison-hemlock", "https://hortsense.cahnrs.wsu.edu/fact-sheet/weeds-poison-hemlock-conium-maculatum/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC6150177/"]
+    },
+    {
+      "id": "death_camas",
+      "common_name": "Death camas",
+      "scientific_name": "Toxicoscordion venenosum",
+      "synonyms": ["Zigadenus venenosus"],
+      "severity": "deadly",
+      "toxin": "Steroidal alkaloids (chiefly zygacine) throughout bulb/foliage/pollen/nectar/seed. Toxins survive cooking and drying — cooking does NOT detoxify.",
+      "why_dangerous": "Holds sodium channels open → hypotension, bradycardia, cardiovascular collapse, GI + neuromuscular effects; symptoms 1–8 hr, can progress to convulsions, coma, death. No antidote. A small number of bulbs can be fatal. A 2024 case poisoned 7 family members who foraged it as wild onions.",
+      "key_id": "Most reliable: flower color creamy/greenish-white — NEVER blue/purple. Bulb resembles an onion but has NO onion/garlic odor. Small 6-tepaled flowers in a raceme/panicle, blooms April–June; basal grass-like V-keeled linear leaves.",
+      "confused_with": ["Blue camas (Camassia quamash, C. leichtlinii) — edible", "Wild onion (Allium spp.)"],
+      "how_to_tell_apart": "Edible camas has BLUE/blue-purple flowers; death camas has creamy/white flowers — and their bulbs are essentially identical out of flower, so harvest blue camas ONLY in bloom and discard anything not clearly blue. The 'no onion smell' bulb test is a SECONDARY check, not foolproof (leaves can smell oniony; handling real onions can mask it) — flower color is the reliable rule.",
+      "do_not_confuse": "Never harvest camas bulbs out of flower; harvest only in bloom and discard every plant whose flowers are not clearly BLUE/PURPLE. A grass-like 'wild onion' bulb with no onion smell may be deadly death camas.",
+      "habitat": "Open sunny meadows, prairies, grasslands, balds, shrub-steppe, ponderosa openings; frequently grows alongside blue camas.",
+      "range": "Throughout WA/OR/ID/S. BC.",
+      "antidote": "None; supportive care (atropine for bradycardia, pressors for hypotension).",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Toxicoscordion+venenosum", "https://extension.oregonstate.edu/catalog/pub/pnw104", "https://www.blm.gov/sites/blm.gov/files/tablerocks_deadlytwins_camas.pdf", "https://pubmed.ncbi.nlm.nih.gov/39472268/"]
+    },
+    {
+      "id": "foxglove",
+      "common_name": "Foxglove",
+      "scientific_name": "Digitalis purpurea",
+      "severity": "deadly",
+      "toxin": "Cardiac (cardenolide) glycosides — chiefly digitoxin. All parts toxic at every stage, including the first-year rosette.",
+      "why_dangerous": "Inhibit Na+/K+-ATPase → arrhythmias, bradycardia, AV/heart block, hyperkalemia; death from ventricular fibrillation/asystole. Signs: vomiting, weakness, visual disturbance (yellow-green halos). Small leaf amounts (e.g., as 'tea') have killed. A hospital antidote exists (digoxin-specific Fab / DigiFab).",
+      "key_id": "Second-year (diagnostic): tall unbranched ONE-SIDED raceme of large tubular/bell-shaped pendulous pink-purple (sometimes white) flowers with a conspicuously SPOTTED throat; blooms May–Aug. First-year rosette (the confusion stage): soft, downy, gray-green lance/egg-shaped leaves, finely toothed/scalloped, with prominent quilted impressed veins and a hairy whitish underside. Biennial, 2–6 ft in flower.",
+      "confused_with": ["Comfrey (Symphytum officinale) — the classic deadly swap", "borage", "mullein", "plantain", "leafy greens"],
+      "how_to_tell_apart": "Foxglove leaves are finely TOOTHED/scalloped; comfrey leaves are smooth/untoothed (entire) with coarse bristly hairs and leaves running down the stem. The year-1 rosette has no flowers — exactly when it is confused with comfrey — yet is loaded with lethal cardiac glycosides.",
+      "do_not_confuse": "Never gather, brew, or eat foxglove leaves as comfrey (or borage/greens). Reliable distinction: foxglove leaves are toothed/scalloped; comfrey leaves are smooth-edged.",
+      "habitat": "Introduced, widely naturalized/invasive — roadsides, logged/clearcut areas, forest edges/clearings, fields, disturbed ground.",
+      "range": "Abundant in WA & OR chiefly west of the Cascade crest and coastal/SW BC. In ID present but scattered/localized (confidence MODERATE).",
+      "antidote": "Digoxin-specific antibody fragments (DigiFab) in hospital; supportive care.",
+      "source": ["http://poisonousplants.ansci.cornell.edu/digitalis.html", "https://pmc.ncbi.nlm.nih.gov/articles/PMC4938686/", "https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Digitalis+purpurea"]
+    },
+    {
+      "id": "false_hellebore",
+      "common_name": "False hellebore / corn lily",
+      "scientific_name": "Veratrum viride",
+      "synonyms": ["Veratrum eschscholtzianum (western variety)"],
+      "severity": "deadly",
+      "toxin": "Steroidal Veratrum alkaloids (veratridine, jervine, veratramine, cyclopamine) — cardiotoxic (hypotension + bradycardia). Whole plant including young shoots; roots/rhizomes most toxic.",
+      "why_dangerous": "Severe poisoning from even a small amount (documented onset after a single leaf). Foragers are poisoned by mistaking young emerging shoots for edible greens. No specific antidote.",
+      "key_id": "Tall (1–2 m); large broad strongly pleated/ribbed leaves with prominent parallel veins (corn-like), bases clasping an erect leafy stem, alternate up the stalk; yellow-green flowers in branched clusters.",
+      "confused_with": ["Young skunk cabbage shoots", "generic young 'wild greens'", "wild leek/ramps (mainly an eastern-US vector)"],
+      "how_to_tell_apart": "vs skunk cabbage — Veratrum has pleated parallel-veined leaves clasping a leafy erect stem; skunk cabbage has broadly oval netted-vein leaves arising only from the base. vs ramps/Allium — Allium smells of onion/garlic; Veratrum has no allium odor.",
+      "do_not_confuse": "If a 'wild green' has pleated, parallel-veined leaves clasping an upright stalk and no onion smell, it is false hellebore — do not eat it.",
+      "habitat": "Moist meadows, streambanks, seeps, moist woodlands; lowlands to subalpine.",
+      "range": "AK to CA, east to N. Rockies; widespread in WA. WA/OR/ID/BC HIGH.",
+      "antidote": "No specific antidote — supportive care; atropine for symptomatic bradycardia; vasopressors for hypotension.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Veratrum%20viride", "https://extension.usu.edu/rangeplants/forbs-herbaceous/false-hellebore"]
+    },
+    {
+      "id": "skunk_cabbage",
+      "common_name": "Western / yellow skunk cabbage",
+      "scientific_name": "Lysichiton americanus",
+      "severity": "toxic",
+      "toxin": "Calcium oxalate raphides (needle crystals) throughout the plant.",
+      "why_dangerous": "Eaten raw, raphides cause intense burning of the mouth/throat/esophagus, oral/pharyngeal irritation, possible throat swelling, and GI irritation. Airway swelling is the serious concern.",
+      "key_id": "Early-spring large bright-yellow hooded spathe (~12–20 in) around a fleshy spike; very large broadly elliptical basal leaves in a rosette; skunky odor (mild in the western species — do not over-rely on smell).",
+      "confused_with": ["Edible wild greens", "false hellebore (Veratrum)"],
+      "how_to_tell_apart": "Skunk cabbage has broadly oval NETTED-vein leaves from the base only, a bright-yellow spathe, and a skunky smell; Veratrum has pleated PARALLEL-veined leaves clasping an upright leafy stalk.",
+      "do_not_confuse": "A wetland plant with a bright-yellow hood (spathe), skunky odor, and big basal netted-vein leaves is skunk cabbage — toxic raw, not a salad green.",
+      "habitat": "Swamps, marshes, forested wetlands, bog margins, seeps; sea level to mid-elevation.",
+      "range": "SE Alaska through BC into NW California; abundant west of the Cascades. HIGH for WA/OR/coastal S. BC; lower for N. Idaho margins.",
+      "antidote": "No specific antidote — rinse mouth, cool fluids/demulcents, monitor for airway swelling; emergency care if breathing difficulty.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Lysichiton%20americanus", "https://botanicgardens.uw.edu"]
+    },
+    {
+      "id": "bittersweet_nightshade",
+      "common_name": "Bittersweet nightshade",
+      "scientific_name": "Solanum dulcamara",
+      "severity": "toxic",
+      "toxin": "Steroidal glycoalkaloids — solanine (highest in unripe green berries + foliage), solasodine, dulcamarine. Ripe red berries are less toxic but still not safe.",
+      "why_dangerous": "GI effects (nausea, vomiting, pain, diarrhea) plus neurological effects (dizziness, drowsiness, confusion, dilated pupils). The bright red berries attract young children — the primary at-risk group.",
+      "key_id": "Trailing/climbing vine to ~10 ft; star-shaped purple/violet flowers with a forward-pointing yellow cone of fused stamens; egg-shaped berries ripening green → orange → glossy red in drooping clusters; dark arrowhead leaves with small basal lobes; foul smell when crushed.",
+      "confused_with": ["Not a major edible mimic — risk is that shiny red berries look candy-like to children"],
+      "how_to_tell_apart": "The purple flower with a protruding yellow 'beak' and drooping red berry clusters on a woody vine match no common edible.",
+      "do_not_confuse": "Do not let children pick the shiny red berries — they are toxic, not a wild edible.",
+      "habitat": "Moist disturbed sites, streambanks, wetland edges, hedgerows, gardens, roadsides, shaded thickets.",
+      "range": "Introduced (Eurasian); widespread and common throughout the PNW.",
+      "antidote": "No specific antidote — supportive care; poison control 1-800-222-1222.",
+      "source": ["https://research.fs.usda.gov/feis/species-reviews/soldul", "https://hortsense.cahnrs.wsu.edu/fact-sheet/weeds-bittersweet-nightshade-solanum-dulcamara/"]
+    },
+    {
+      "id": "deadly_nightshade_belladonna",
+      "common_name": "Deadly nightshade / belladonna",
+      "scientific_name": "Atropa belladonna",
+      "severity": "deadly",
+      "toxin": "Tropane alkaloids — atropine, scopolamine, hyoscyamine — throughout the plant (roots most concentrated).",
+      "why_dangerous": "Potent anticholinergic — dilated pupils, dry flushed skin, tachycardia, fever, CNS confusion/hallucinations/delirium/seizures; severe cases coma/respiratory failure/death. The sweet shiny black berries are especially dangerous to children — a small number can be fatal.",
+      "key_id": "Tall bushy perennial; drooping bell-shaped flowers dull reddish/brownish-purple; SINGLE shiny black berries (not tight clusters) seated in a persistent green 5-pointed star calyx; ovate leaves in unequal pairs.",
+      "confused_with": ["Black berries mistaken for blueberries/huckleberries — primary lethal risk, especially for children"],
+      "how_to_tell_apart": "Belladonna berries are borne singly (not in grape-like clusters or on blueberry shrubs) in a green star calyx, on a tall bushy herb with brownish-purple bell flowers.",
+      "do_not_confuse": "Never mistake the single shiny black berries for blueberries — a small amount can be fatal to a child.",
+      "habitat": "Disturbed ground, dumps, quarries, waste sites, roadsides, shaded calcareous soils; mostly a garden/medicinal escape.",
+      "range": "FLAG — uncommon/rare in Cascadia (scattered naturalized escapes). A reported 'deadly nightshade' here is statistically far more likely to be misidentified bittersweet nightshade.",
+      "antidote": "Physostigmine for severe anticholinergic toxicity (used cautiously); otherwise supportive — activated charcoal, benzodiazepines, ICU monitoring. Poison control 1-800-222-1222.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Atropa+belladonna", "https://plants.ces.ncsu.edu/plants/atropa-bella-donna/"]
+    },
+    {
+      "id": "snowberry",
+      "common_name": "Common snowberry",
+      "scientific_name": "Symphoricarpos albus",
+      "severity": "toxic",
+      "toxin": "Uncertain/poorly characterized — reported saponins, possibly isoquinoline alkaloids and/or calcium oxalate. Toxin attribution is LOW confidence; 'do not eat' is HIGH confidence.",
+      "why_dangerous": "White berries are mildly toxic — nausea, vomiting, dizziness, especially in quantity; a concern for children drawn to the conspicuous white winter-persistent berries.",
+      "key_id": "Native deciduous shrub (~1–2 m) with wiry arching branches; round waxy SNOW-WHITE berries 8–12 mm in clusters persisting into winter; small pinkish bell flowers; small opposite oval leaves.",
+      "confused_with": ["No good edible white-berry lookalike — there are essentially no common edible pure-white PNW berries; the risk is curiosity-eating"],
+      "how_to_tell_apart": "Opaque waxy pure-white round berries on a wiry native shrub with paired leaves and pinkish bell flowers are diagnostic.",
+      "do_not_confuse": "Pure-white berries are not a wild edible — snowberries cause stomach upset and should never be eaten.",
+      "habitat": "Woodlands, forest edges, streambanks, thickets; low to mid elevation.",
+      "range": "PNW native and very common — SE Alaska to S. California, east to the Rockies; widespread WA/OR/ID/BC both sides of the crest.",
+      "antidote": "No specific antidote — supportive care for GI upset; poison control if a child ingests.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Symphoricarpos+albus", "https://www.nps.gov/articles/000/common-snowberry.htm"]
+    },
+    {
+      "id": "yellow_flag_iris",
+      "common_name": "Yellow flag iris",
+      "scientific_name": "Iris pseudacorus",
+      "severity": "toxic",
+      "toxin": "Irritant glycosides + resinous compounds, highest in the rhizomes.",
+      "why_dangerous": "GI gastroenteritis (nausea, vomiting, pain, diarrhea); sap/resins cause contact dermatitis (agencies advise gloves/long sleeves). Effects are irritant/purgative rather than typically fatal (human lethal data not well established — qualitative).",
+      "key_id": "Stiff erect sword-shaped flat leaves (blue-green) with a raised midrib, overlapping in a flat basal fan; showy yellow flowers (May–July); 3-/6-angled seed capsules with corky floating seeds; thick fleshy mat-forming rhizomes.",
+      "confused_with": ["Common cattail (especially before flowering)", "sweet flag (Acorus)"],
+      "how_to_tell_apart": "vs cattail — iris leaf is flat in one plane with a midrib and a flat basal fan, often pink/red-tinged at base; cattail leaf is thicker, D-shaped/spongy, wraps a round stalk, with no fan and no reddish base. vs Acorus — Acorus is strongly aromatic when crushed; iris is not.",
+      "do_not_confuse": "Before it flowers, the iris's sword-leaf fan mimics non-flowering cattail — never ID cattail by leaves alone, because the toxic iris rhizome is exactly the part most likely mistaken for the edible cattail rhizome.",
+      "habitat": "Wetlands, lake/pond margins, irrigation ditches, slow streams, marsh/mud.",
+      "range": "Eurasian; introduced and invasive in the PNW; WA both sides (more common west), BC to CA, east to ID/MT. Washington Class C noxious weed.",
+      "antidote": "No specific antidote — supportive/symptomatic; wash skin; poison control 1-800-222-1222.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Iris+pseudacorus", "https://www.nwcb.wa.gov/weeds/yellow-flag-iris"]
+    },
+    {
+      "id": "tall_larkspur",
+      "common_name": "Tall larkspur",
+      "scientific_name": "Delphinium glaucum",
+      "synonyms": ["Delphinium spp. (genus-level; also D. occidentale, low larkspurs)"],
+      "severity": "deadly",
+      "toxin": "Norditerpenoid alkaloids — highly toxic MSAL-type (methyllycaconitine) and MDL-type. Mechanism: competitive blockade of nicotinic ACh receptors → neuromuscular paralysis.",
+      "why_dangerous": "Leading plant cause of cattle death on western US rangelands; also toxic to humans (rare but documented, can be fatal — GI irritation, neuromuscular blockade, cardiotoxicity). All parts toxic; new growth and seeds carry the highest alkaloid load.",
+      "key_id": "Tall (1–2 m) stout glabrous glaucous perennial with hollow stems; palmately divided leaves; an elongate raceme of deep blue-purple flowers; the upper sepal has a backward-projecting SPUR.",
+      "confused_with": ["Monkshood (Aconitum — close deadly relative)", "young palmate leaves vs other broad-leaved forbs"],
+      "how_to_tell_apart": "Larkspur flower has a SPUR; monkshood has a HOOD/helmet (no spur). When not flowering, larkspur stems are hollow. Leaf-only ID is unreliable.",
+      "do_not_confuse": "The spurred blue flower (larkspur) and the hooded blue flower (monkshood) are distinct but BOTH deadly — never treat either as safe.",
+      "habitat": "Mountain meadows, wet thickets, bogs, streambanks, conifer-forest openings; middle elevations.",
+      "range": "Native PNW mountains; D. glaucum both sides of the crest in WA; AK to CA, east to the Rockies — WA, OR, ID, S. BC.",
+      "antidote": "No specific human antidote — supportive/respiratory care.",
+      "source": ["https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Delphinium+glaucum", "https://www.ars.usda.gov/pacific-west-area/logan-ut/poisonous-plant-research/"]
+    },
+    {
+      "id": "tansy_ragwort",
+      "common_name": "Tansy ragwort",
+      "scientific_name": "Jacobaea vulgaris",
+      "synonyms": ["Senecio jacobaea"],
+      "severity": "toxic",
+      "toxin": "Pyrrolizidine alkaloids (jacobine, senecionine) — bioactivated in the liver to reactive pyrroles → cumulative, irreversible liver damage.",
+      "why_dangerous": "Repeated small doses cause fatal liver failure (cumulative — there is no recovery threshold). PAs contaminate the food chain — documented in honey and milk (a human exposure route). All parts toxic; highest in flowers.",
+      "key_id": "Biennial; first-year rosette of dark green ruffled basal leaves; second-year stems to ~4 ft; flat-topped clusters of yellow daisy-like heads (typically 13 ray florets); twice-divided deeply lobed ragged leaves.",
+      "confused_with": ["Common tansy (Tanacetum vulgare) — the classic name swap", "St. John's-wort", "native butterweed"],
+      "how_to_tell_apart": "Common tansy has button-like RAYLESS yellow heads; ragwort has obvious ray florets ('petals'). St. John's-wort has 5 petals (not a composite).",
+      "do_not_confuse": "Tansy ragwort's daisy-like RAYED yellow heads are not common tansy's rayless yellow buttons — the names are swapped constantly; ragwort is the cumulative liver poison (common tansy is also toxic).",
+      "habitat": "Open disturbed ground — roadsides, pastures, fields, cleared/logged land.",
+      "range": "Introduced Eurasian invasive; widespread PNW, most common west of the Cascades; present in eastern WA and S. BC. Washington Class B noxious weed.",
+      "antidote": "None — liver damage is irreversible/cumulative; supportive care only; prognosis poor once clinical signs appear.",
+      "source": ["https://www.nwcb.wa.gov/weeds/tansy-ragwort", "https://www.merckvetmanual.com/toxicology/pyrrolizidine-alkaloidosis/pyrrolizidine-alkaloidosis-in-animals"]
+    },
+    {
+      "id": "lily_of_the_valley",
+      "common_name": "Lily-of-the-valley",
+      "scientific_name": "Convallaria majalis",
+      "severity": "deadly",
+      "toxin": "Cardiac glycosides (chiefly convallatoxin) + saponins — inhibit myocardial Na+/K+-ATPase (same class as digoxin/foxglove/oleander).",
+      "why_dangerous": "Cardiotoxic — nausea, vomiting, diarrhea, then bradycardia/arrhythmias, potential cardiac arrest. All parts poisonous including leaves, flowers, roots, and the red-orange berries; toxins even leach into cut-flower vase water. (Serious human poisoning is somewhat uncommon because the glycosides are poorly absorbed orally, but ingestion is a medical emergency.)",
+      "key_id": "Low perennial (~18–30 cm); typically two paired broad elliptical leaves with parallel/arching veins; an arching one-sided raceme of small white nodding fragrant bell flowers; a red-orange berry (6–12 mm) in late summer.",
+      "confused_with": ["Wild garlic / ramps (Allium ursinum) and wild onion greens before flowering — a documented serious/fatal poisoning vector"],
+      "how_to_tell_apart": "SMELL — wild garlic/ramps smell strongly of onion/garlic when crushed; lily-of-the-valley has NO onion/garlic odor. Allium leaves are on individual stalks; lily-of-the-valley leaves emerge paired from a basal sheath.",
+      "do_not_confuse": "Lily-of-the-valley's odorless paired leaves are easily mistaken for onion-smelling wild garlic/ramps, and eating them can be fatal — if the crushed leaf has no onion/garlic smell, never eat it.",
+      "habitat": "Shaded moist woodland and garden beds; commonly a garden ornamental/escape.",
+      "range": "FLAG — primarily cultivated / a garden escape in the PNW, not a widespread naturalized wild plant; encounters most likely in/near gardens and landscaping.",
+      "antidote": "Supportive cardiac care with ECG monitoring and electrolyte correction; digoxin-specific antibody fragments (DigiFab) for severe cardiac-glycoside poisoning. Poison control 1-800-222-1222.",
+      "source": ["https://plants.ces.ncsu.edu/plants/convallaria-majalis/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC8604113/"]
+    }
+  ]
+}
