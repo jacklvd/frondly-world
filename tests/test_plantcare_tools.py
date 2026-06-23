@@ -5,6 +5,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from plantcare.tools.decline import assess_decline
+from plantcare.tools.schedule import watering_schedule
 
 
 def test_decline_detects_downward_trend():
@@ -29,6 +30,26 @@ def test_decline_detects_improvement():
 def test_decline_stable_and_insufficient():
     assert assess_decline([])["trend"] == "stable"
     assert assess_decline([{"date": "2026-06-01", "health": "good"}])["trend"] == "stable"
+
+
+def test_schedule_base_interval_no_rain():
+    h = [{"date": "2026-06-20", "health": "good"}]
+    r = watering_schedule("monstera", {"precip_7d": 0}, h)
+    assert r["interval_days"] == 7, r
+    assert r["next_water_date"] == "2026-06-27", r
+
+
+def test_schedule_rain_extends_interval():
+    h = [{"date": "2026-06-20", "health": "good"}]
+    r = watering_schedule("monstera", {"precip_7d": 30}, h)  # +3 days
+    assert r["interval_days"] == 10, r
+    assert r["next_water_date"] == "2026-06-30", r
+
+
+def test_schedule_unknown_species_default_and_no_history():
+    r = watering_schedule("mystery plant", {}, [])
+    assert r["interval_days"] == 7
+    assert r["next_water_date"] is None
 
 
 if __name__ == "__main__":
