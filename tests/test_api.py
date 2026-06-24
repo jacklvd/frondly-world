@@ -19,7 +19,7 @@ client = TestClient(app)
 
 
 def test_health():
-    assert client.get("/health").json() == {"ok": True}
+    assert client.get("/health").json() == {"status": "ok"}  # ADK's built-in health route
 
 
 def test_identify_returns_state_without_safe_verdict():

@@ -18,23 +18,15 @@ from forage.vision import GeminiVision, VisionBackend
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")  # GEMINI_API_KEY
 
 # The 'plantcare' agent package lives directly under this directory.
+# get_fast_api_app already provides a /health route ({"status": "ok"}); we reuse it.
 _AGENTS_DIR = str(Path(__file__).resolve().parent)
 app = get_fast_api_app(agents_dir=_AGENTS_DIR, web=False)
-
-# Remove ADK's /health route so ours takes precedence (ADK returns {"status":"ok"};
-# our contract is {"ok": True}).
-app.routes[:] = [r for r in app.routes if getattr(r, "path", None) != "/health"]
 
 
 @lru_cache(maxsize=1)
 def get_vision() -> VisionBackend:
     """Single GeminiVision for the process. Overridden with a stub in tests."""
     return GeminiVision()
-
-
-@app.get("/health")
-def health() -> dict:
-    return {"ok": True}
 
 
 @app.post("/forage/identify")
