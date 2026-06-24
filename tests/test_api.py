@@ -22,6 +22,13 @@ def test_health():
     assert client.get("/health").json() == {"status": "ok"}  # ADK's built-in health route
 
 
+def test_plantcare_app_name_discoverable():
+    # app_name the iOS client must use is the folder name "plantcare", not the agent's internal name "plant_care"
+    r = client.get("/list-apps")
+    assert r.status_code == 200, r.text
+    assert "plantcare" in r.json()
+
+
 def test_identify_returns_state_without_safe_verdict():
     r = client.post("/forage/identify", files={"file": ("p.jpg", b"\xff\xd8x", "image/jpeg")})
     assert r.status_code == 200, r.text
