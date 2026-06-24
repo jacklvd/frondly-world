@@ -1,7 +1,7 @@
-"""Forage analysis service — stateless. Image in, ForageResult out; persists nothing.
+"""Forage + plant-care analysis service. Stateless: persists nothing.
 
-The deterministic safety pipeline (vision -> dataset -> 4-state result) lives in
-forage/. This file is only the HTTP seam the iOS app POSTs a photo to.
+- ADK plant-care agent mounted via get_fast_api_app (routes: /run, /sessions, ...).
+- Forage identify is a deterministic endpoint added onto the same app.
 
 Run: uv run uvicorn main:app --reload
 """
@@ -9,14 +9,21 @@ from functools import lru_cache
 from pathlib import Path
 
 from dotenv import load_dotenv
-from fastapi import Depends, FastAPI, UploadFile
+from fastapi import Depends, UploadFile
+from google.adk.cli.fast_api import get_fast_api_app
 
 from forage.identify import identify_wild_plant
 from forage.vision import GeminiVision, VisionBackend
 
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")  # GEMINI_API_KEY
 
-app = FastAPI(title="Forage analysis service")
+# The 'plantcare' agent package lives directly under this directory.
+_AGENTS_DIR = str(Path(__file__).resolve().parent)
+app = get_fast_api_app(agents_dir=_AGENTS_DIR, web=False)
+
+# Remove ADK's /health route so ours takes precedence (ADK returns {"status":"ok"};
+# our contract is {"ok": True}).
+app.routes[:] = [r for r in app.routes if getattr(r, "path", None) != "/health"]
 
 
 @lru_cache(maxsize=1)
