@@ -1,0 +1,5 @@
+# Frondly lives in client/ within a monorepo; run lint-staged there.
+# ponytail: skip silently if client deps aren't installed (e.g. committing only server/ changes)
+ROOT="$(git rev-parse --show-toplevel)"
+[ -d "$ROOT/client/node_modules/.bin" ] || exit 0
+cd "$ROOT/client" && npx lint-staged

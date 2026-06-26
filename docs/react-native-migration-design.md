@@ -24,6 +24,8 @@ The architecture already favors this: the backend is a stateless HTTP/JSON servi
 | Navigation | **Expo Router** (file-based) | Web-like mental model (file = screen); friend-friendly; Expo's default. |
 | Styling | **NativeWind** + strict token config | Tailwind classes resolving against one `tailwind.config.js` theme ported from `Theme.swift` / `docs/design-tokens.md`. Single source of design truth. |
 | Package manager | **yarn** | Per team preference. |
+| App name | **Frondly** | Wordplay: *frond* (leaf) + *friendly*. Scaffolded in `client/`; slug `frondly`; bundle id `com.frondly.app`. |
+| Lint/format | **ESLint (eslint-config-expo) + Prettier**, enforced on commit via **Husky + lint-staged** | Shared, automatic code style so two devs stay consistent. ESLint pinned to v9 (v10 crashes eslint-plugin-react). |
 | Existing Swift app | **Reference, then retire** | Keep `green-ish-client/` as the look/behavior reference until RN reaches parity, then delete. |
 | Build strategy | **Vertical slice first** | Prove DB + UI + EAS pipeline + friend's machine on day one before building all screens. |
 | Backend | **Unchanged** | Same HTTP/JSON contract as `APIClient.swift`. |

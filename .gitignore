@@ -14,6 +14,22 @@ wheels/
 # macOS
 .DS_Store
 
+# Node / React Native / Expo (client/)
+node_modules/
+.expo/
+dist/
+web-build/
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.pnp.*
+# Expo/EAS native build output + local env
+client/ios/
+client/android/
+.env*.local
+expo-env.d.ts
+
 # Xcode (iOS app, added in Step 1)
 *.xcuserstate
 xcuserdata/
@@ -22,3 +38,7 @@ DerivedData/
 *.pen
 # Superpowers plans/specs — keep local
 docs/superpowers/
+
+.claude/
+# Local-only Swift reference app (nested git repo, kept off the monorepo)
+green-ish-client/
