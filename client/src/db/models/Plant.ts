@@ -1,4 +1,5 @@
 import { Q, Model } from "@nozbe/watermelondb";
+import type { Query } from "@nozbe/watermelondb";
 import { field, date, children } from "@nozbe/watermelondb/decorators";
 import { THRIVING_THRESHOLD } from "../health";
 import type { Observation } from "./Observation";
@@ -16,7 +17,7 @@ export class Plant extends Model {
   @field("latitude") latitude: number | null;
   @field("longitude") longitude: number | null;
   @field("hero_photo") heroPhoto: string | null;
-  @children("observations") observations: any;
+  @children("observations") observations: Query<Observation>;
 
   // oldest→newest, what the timeline + historyForBackend consume (ports Plant.timeline)
   private async timeline(): Promise<Observation[]> {

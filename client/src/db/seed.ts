@@ -59,7 +59,7 @@ export async function seedSampleGardenIfEmpty(database: Database): Promise<void>
       });
       for (const [score, note, ago] of spec.scores) {
         await database.get<Observation>("observations").create((o) => {
-          (o as any).plant.set(plant);
+          o.plant.set(plant);
           o.note = note;
           o.healthScore = score;
           o.date = daysAgo(ago);

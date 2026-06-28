@@ -1,5 +1,7 @@
 import { Model } from "@nozbe/watermelondb";
+import type { Relation } from "@nozbe/watermelondb";
 import { field, date, relation, json } from "@nozbe/watermelondb/decorators";
+import type { Plant } from "./Plant";
 
 const sanitizeSteps = (raw: unknown): string[] => (Array.isArray(raw) ? raw.map(String) : []);
 
@@ -15,5 +17,5 @@ export class Observation extends Model {
   @field("photo") photo: string | null;
   @date("date") date: Date;
   @json("care_steps", sanitizeSteps) careSteps: string[];
-  @relation("plants", "plant_id") plant: unknown;
+  @relation("plants", "plant_id") plant: Relation<Plant>;
 }

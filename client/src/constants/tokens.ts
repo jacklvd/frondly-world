@@ -1,8 +1,8 @@
 // Cozy Botanical palette for use where a NativeWind className can't reach:
 // vector-icon colors, navigator options, and data-driven (per-score) colors.
 // Mirrors tailwind.config.js — keep the two in sync.
-// ponytail: a shared JS module imported by both would kill the dupe; 13 stable
-// values isn't worth refactoring the committed tailwind.config now.
+// NOTE: a shared JS module imported by both would remove this duplication, but
+// 13 stable values aren't worth refactoring the committed tailwind.config now.
 export const tokens = {
   paper: "#EEF1E9",
   surface: "#F7F8F3",
