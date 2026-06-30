@@ -54,11 +54,17 @@ export function useGarden(): { plants: PlantVM[]; loading: boolean } {
       .query(Q.sortBy("date_added", Q.desc))
       .observe()
       .subscribe((rows) => {
-        Promise.all(rows.map(toVM)).then((vms) => {
-          if (cancelled) return;
-          setPlants(vms);
-          setLoading(false);
-        });
+        Promise.all(rows.map(toVM))
+          .then((vms) => {
+            if (cancelled) return;
+            setPlants(vms);
+            setLoading(false);
+          })
+          .catch((e) => {
+            if (cancelled) return;
+            console.error("garden load failed:", e);
+            setLoading(false); // clear the spinner instead of hanging on it
+          });
       });
 
     return () => {
