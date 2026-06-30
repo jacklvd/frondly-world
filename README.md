@@ -53,3 +53,5 @@ Point the client at the backend by setting `BASE_URL` in `client/src/lib/api.ts`
 ## Status
 
 Backend (forage identify + plantcare agent) is implemented and tested. The client is mid-migration from an earlier SwiftUI app to React Native; see `docs/react-native-migration-design.md` for the architecture and rationale.
+
+# firestore smoke 1782793860
