@@ -21,6 +21,10 @@ RESEARCHING_NOTE = (
     "We only show foraging information for plants in our research-verified database. "
     "We're expanding verified coverage — more plants are coming."
 )
+RATE_LIMIT_NOTE = (
+    "The plant ID service is temporarily rate-limited. We could not verify this plant right now, "
+    "so we’re showing a safe low-confidence fallback instead."
+)
 
 _FACT_FIELDS = ("edible_part", "preparation", "season", "habitat", "range")
 
@@ -48,10 +52,13 @@ class ForageResult:
 
 def identify_wild_plant(image, vision: VisionBackend, dataset: Dataset | None = None) -> ForageResult:
     ds = dataset or load_dataset()
-    candidates = vision.identify(image)
+    try:
+        candidates = vision.identify(image)
+    except Exception:
+        return ForageResult("low_confidence", 0.0, message=RATE_LIMIT_NOTE)
 
     if not candidates:
-        return ForageResult("low_confidence", 0.0, message=RESEARCHING_NOTE)
+        return ForageResult("low_confidence", 0.0, message=RATE_LIMIT_NOTE)
 
     top = candidates[0]
 
