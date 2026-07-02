@@ -1,12 +1,12 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { CameraView, useCameraPermissions } from "expo-camera";
-import { useEffect } from "react";
+import { useEffect, type RefObject } from "react";
 import { Pressable, Text, View, type ViewStyle } from "react-native";
 
 import { tokens } from "@/constants/tokens";
 
 type CameraPreviewProps = {
-  cameraRef: React.RefObject<CameraView | null>;
+  cameraRef: RefObject<CameraView | null>;
   instructionText: string;
   style?: ViewStyle;
   isFocused: boolean;

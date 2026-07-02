@@ -20,7 +20,7 @@ export default function AddPlant() {
     try {
       const shot = await cameraRef.current.takePictureAsync({ quality: 0.5 });
       if (!shot?.uri) return;
-      router.push({ pathname: "/forage/result", params: { photo: shot.uri } });
+      router.push({ pathname: "/add/manual", params: { photo: shot.uri } });
     } catch {
       return;
     }

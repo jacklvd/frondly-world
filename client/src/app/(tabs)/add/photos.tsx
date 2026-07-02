@@ -21,14 +21,14 @@ export default function AddPhotos() {
   }, []);
 
   async function choosePhoto() {
-    if (permission === false) {
+    if (permission !== true) {
       const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
       setPermission(result.granted ?? false);
       if (!result.granted) return;
     }
 
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ["images"],
       quality: 0.6,
       allowsEditing: true,
     });

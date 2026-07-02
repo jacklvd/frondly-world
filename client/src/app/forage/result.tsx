@@ -1,7 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -223,7 +223,7 @@ export default function ForageResult() {
   );
 }
 
-function Header({ title, children }: { title: string; children?: React.ReactNode }) {
+function Header({ title, children }: { title: string; children?: ReactNode }) {
   return (
     <View className="flex-row items-center gap-3">
       <Pressable
@@ -245,7 +245,7 @@ function NameBlock({
 }: {
   name?: string | null;
   scientific?: string | null;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }) {
   return (
     <View className="gap-2">

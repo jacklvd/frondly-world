@@ -1,5 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { router } from "expo-router";
+import { Image } from "expo-image";
+import { router, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -16,11 +17,15 @@ type LightOption = (typeof LIGHTS)[number];
 
 export default function AddManual() {
   const insets = useSafeAreaInsets();
+  const { photo } = useLocalSearchParams<{ photo?: string }>();
   const [name, setName] = useState("");
   const [room, setRoom] = useState<RoomOption>(ROOMS[0]);
   const [light, setLight] = useState<LightOption>(LIGHTS[1]);
   const [saving, setSaving] = useState(false);
 
+  // dev-note: room/light aren't on the Plant model/schema yet, so they're
+  // captured in the UI but not persisted. Add columns + a migration when
+  // those fields are actually needed downstream.
   async function save() {
     if (!name.trim() || saving) return;
     setSaving(true);
@@ -32,7 +37,7 @@ export default function AddManual() {
           plant.dateAdded = new Date();
           plant.latitude = null;
           plant.longitude = null;
-          plant.heroPhoto = null;
+          plant.heroPhoto = photo ?? null;
         });
       });
       router.replace("/");
@@ -67,6 +72,16 @@ export default function AddManual() {
           </Text>
         </View>
       </View>
+
+      {photo ? (
+        <View className="h-[190px] items-center justify-center overflow-hidden rounded-[20px] bg-stoneBg">
+          <Image
+            source={{ uri: photo }}
+            style={{ width: "100%", height: "100%" }}
+            contentFit="cover"
+          />
+        </View>
+      ) : null}
 
       <View className="gap-4">
         <View>
