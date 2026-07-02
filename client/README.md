@@ -66,7 +66,7 @@ In the output, you'll find options to open the app in a
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
 - ~~[Expo Go](https://expo.dev/go)~~ — **not supported** for this project (see the Android section above); use a development build.
 
-> `npm run ios` builds and installs a native dev client via `expo run:ios`
+> `yarn ios` builds and installs a native dev client via `expo run:ios`
 > (Xcode + CocoaPods required) rather than launching Expo Go — same reason as
 > Android above, this app depends on native modules Expo Go doesn't bundle.
 
