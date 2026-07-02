@@ -1,18 +1,22 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Chip } from "@/components/ui/chip";
 import { SectionLabel } from "@/components/ui/section-label";
 import { tokens } from "@/constants/tokens";
-import { getLastResult } from "@/forage/api";
+import { buildForageSpeciesId, formatLookalike, getLastResult } from "@/forage/api";
 
 // Forage Species Detail — ports ForageDetailView. Renders the full curated info
 // from the last identification (facts, lookalikes, safety caveat, sources).
 export default function ForageSpecies() {
   const insets = useSafeAreaInsets();
+  const { id } = useLocalSearchParams<{ id?: string }>();
   const r = getLastResult();
+  const routeId = typeof id === "string" ? id : undefined;
+  const expectedId = r ? buildForageSpeciesId(r) : null;
+  const idMatches = !routeId || routeId === "current" || routeId === expectedId;
 
   if (!r || !r.name) {
     return (
@@ -22,6 +26,22 @@ export default function ForageSpecies() {
       >
         <Text className="text-center font-body text-[13px] text-secondary">
           No species selected. Identify a plant first.
+        </Text>
+        <Pressable onPress={() => router.back()} className="rounded-full bg-forest px-5 py-2.5">
+          <Text className="font-body text-[13px] font-semibold text-white">Back</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  if (routeId && !idMatches) {
+    return (
+      <View
+        className="flex-1 items-center justify-center gap-3 bg-paper px-8"
+        style={{ paddingTop: insets.top }}
+      >
+        <Text className="text-center font-body text-[13px] text-secondary">
+          This species detail is not available for the requested route.
         </Text>
         <Pressable onPress={() => router.back()} className="rounded-full bg-forest px-5 py-2.5">
           <Text className="font-body text-[13px] font-semibold text-white">Back</Text>
@@ -66,9 +86,33 @@ export default function ForageSpecies() {
           ) : null}
         </View>
         <Chip
-          text={r.state === "verified_edible" ? "Edible" : "Caution"}
-          bg={r.state === "verified_edible" ? "mintBg" : "blushBg"}
-          fg={r.state === "verified_edible" ? "leafText" : "rust"}
+          text={
+            r.state === "verified_edible"
+              ? "Edible"
+              : r.state === "verified_toxic"
+                ? "Do not eat"
+                : r.state === "unverified"
+                  ? "Unverified"
+                  : "Caution"
+          }
+          bg={
+            r.state === "verified_edible"
+              ? "mintBg"
+              : r.state === "verified_toxic"
+                ? "blushBg"
+                : r.state === "unverified"
+                  ? "stoneBg"
+                  : "blushBg"
+          }
+          fg={
+            r.state === "verified_edible"
+              ? "leafText"
+              : r.state === "verified_toxic"
+                ? "rust"
+                : r.state === "unverified"
+                  ? "secondary"
+                  : "rust"
+          }
         />
       </View>
 
@@ -92,10 +136,12 @@ export default function ForageSpecies() {
         <View className="gap-2.5">
           <SectionLabel text="TOXIC LOOKALIKES" />
           <View className="gap-2 rounded-[16px] bg-blushBg p-3.5">
-            {r.toxic_lookalikes.map((l) => (
-              <View key={l} className="flex-row gap-2">
+            {r.toxic_lookalikes.map((l, index) => (
+              <View key={`${formatLookalike(l)}-${index}`} className="flex-row gap-2">
                 <Ionicons name="warning" size={13} color={tokens.rust} style={{ marginTop: 2 }} />
-                <Text className="flex-1 font-body text-[13px] text-forest">{l}</Text>
+                <Text className="flex-1 font-body text-[13px] text-forest">
+                  {formatLookalike(l)}
+                </Text>
               </View>
             ))}
           </View>
@@ -107,10 +153,12 @@ export default function ForageSpecies() {
         <View className="gap-2.5">
           <SectionLabel text="SIMILAR & SAFE" />
           <View className="gap-2 rounded-[16px] bg-mintBg p-3.5">
-            {r.benign_lookalikes.map((l) => (
-              <View key={l} className="flex-row gap-2">
+            {r.benign_lookalikes.map((l, index) => (
+              <View key={`${formatLookalike(l)}-${index}`} className="flex-row gap-2">
                 <Ionicons name="leaf" size={13} color={tokens.leafText} style={{ marginTop: 2 }} />
-                <Text className="flex-1 font-body text-[13px] text-forest">{l}</Text>
+                <Text className="flex-1 font-body text-[13px] text-forest">
+                  {formatLookalike(l)}
+                </Text>
               </View>
             ))}
           </View>
@@ -133,6 +181,16 @@ export default function ForageSpecies() {
           Sources: {r.sources.join(", ")}
         </Text>
       ) : null}
+      {/* safety strip (standing, non-dismissable disclaimer) */}
+      <View className="flex-row items-start gap-2 rounded-[12px] bg-stoneBg p-3">
+        <Ionicons
+          name="shield-checkmark"
+          size={14}
+          color={tokens.secondary}
+          style={{ marginTop: 1 }}
+        />
+        <Text className="flex-1 font-body text-[11px] text-secondary">{r.safety_strip}</Text>
+      </View>
     </ScrollView>
   );
 }

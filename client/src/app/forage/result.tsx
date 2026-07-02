@@ -8,7 +8,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Chip } from "@/components/ui/chip";
 import { SectionLabel } from "@/components/ui/section-label";
 import { tokens } from "@/constants/tokens";
-import { identifyPhoto, type ForageResult } from "@/forage/api";
+import {
+  buildForageSpeciesId,
+  formatLookalike,
+  identifyPhoto,
+  type ForageResult as ForageResultType,
+} from "@/forage/api";
 
 // Forage Result — ports ForageResultView + ForageLowConfidenceView. Uploads the
 // captured photo to the backend and renders one of the four safety-first states
@@ -17,20 +22,27 @@ import { identifyPhoto, type ForageResult } from "@/forage/api";
 export default function ForageResult() {
   const insets = useSafeAreaInsets();
   const { photo } = useLocalSearchParams<{ photo?: string }>();
-  const [status, setStatus] = useState<"loading" | "error" | "done">("loading");
-  const [result, setResult] = useState<ForageResult | null>(null);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [status, setStatus] = useState<"loading" | "error" | "done">(photo ? "loading" : "error");
+  const [result, setResult] = useState<ForageResultType | null>(null);
+  const [errorMsg, setErrorMsg] = useState(photo ? "" : "No photo to identify.");
 
   useEffect(() => {
-    let cancelled = false;
     if (!photo) {
-      setErrorMsg("No photo to identify.");
-      setStatus("error");
       return;
     }
+
+    let cancelled = false;
     identifyPhoto(photo)
-      .then((r) => !cancelled && (setResult(r), setStatus("done")))
-      .catch((e) => !cancelled && (setErrorMsg(String(e?.message ?? e)), setStatus("error")));
+      .then((r) => {
+        if (cancelled) return;
+        setResult(r);
+        setStatus("done");
+      })
+      .catch((e) => {
+        if (cancelled) return;
+        setErrorMsg(String(e?.message ?? e));
+        setStatus("error");
+      });
     return () => {
       cancelled = true;
     };
@@ -183,9 +195,12 @@ export default function ForageResult() {
             <Ionicons name="warning" size={18} color={tokens.rust} />
             <Text className="font-display text-[15px] text-rust">Toxic lookalike to know</Text>
           </View>
-          {result.toxic_lookalikes.map((l) => (
-            <Text key={l} className="font-body text-[13px] text-forest">
-              • {l}
+          {result.toxic_lookalikes.map((l, index) => (
+            <Text
+              key={`${formatLookalike(l)}-${index}`}
+              className="font-body text-[13px] text-forest"
+            >
+              • {formatLookalike(l)}
             </Text>
           ))}
         </View>
@@ -198,7 +213,12 @@ export default function ForageResult() {
       <PrimaryButton
         icon="leaf"
         label="View full species info"
-        onPress={() => router.push({ pathname: "/forage/species/[id]", params: { id: "current" } })}
+        onPress={() =>
+          router.push({
+            pathname: "/forage/species/[id]",
+            params: { id: result.name ? buildForageSpeciesId(result) : "species" },
+          })
+        }
       />
       <SafetyStrip text={result.safety_strip} />
     </ScrollView>

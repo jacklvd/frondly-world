@@ -2,22 +2,19 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { router, useIsFocused } from "expo-router";
 import { useRef } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { CameraPreview } from "@/components/camera-preview";
 
 import { tokens } from "@/constants/tokens";
 
-// Forage Capture — ports ForageCaptureView. Tab entry: point the camera at a
-// wild plant and capture to identify it.
-export default function ForageCapture() {
+export default function AddPlant() {
   const insets = useSafeAreaInsets();
+  const { height } = useWindowDimensions();
   const [permission] = useCameraPermissions();
   const cameraRef = useRef<CameraView>(null);
 
-  // Capture a photo and hand it to the result screen, which uploads it to the
-  // backend for identification.
   async function capture() {
     if (!permission?.granted || !cameraRef.current) return;
     try {
@@ -25,40 +22,29 @@ export default function ForageCapture() {
       if (!shot?.uri) return;
       router.push({ pathname: "/forage/result", params: { photo: shot.uri } });
     } catch {
-      // Ignore capture failures (e.g. camera not ready) and keep the user on the capture screen.
       return;
     }
   }
 
   return (
     <View className="flex-1 bg-paper" style={{ paddingTop: insets.top + 8 }}>
-      <View className="flex-row items-start px-4">
-        <View className="flex-1">
-          <Text className="font-display text-[28px] text-forest">Forage</Text>
-          <Text className="font-body text-xs text-secondary">
-            Identify wild plants on the trail
-          </Text>
-        </View>
-        <Pressable
-          onPress={() => router.push("/forage/finds")}
-          className="h-10 w-10 items-center justify-center rounded-full border border-border bg-surface"
-        >
-          <Ionicons name="bookmark-outline" size={18} color={tokens.forest} />
-        </Pressable>
+      <View className="px-4">
+        <Text className="font-display text-[28px] text-forest">Add a plant</Text>
+        <Text className="mt-1 font-body text-xs text-secondary">
+          {"Point at a plant — we\'ll identify it and check its health"}
+        </Text>
       </View>
 
-      {/* viewfinder */}
       <CameraPreview
         cameraRef={cameraRef}
-        instructionText="Snap a berry, leaf, or whole plant"
+        instructionText="Snap a leaf, flower, or whole plant"
         isFocused={useIsFocused()}
-        style={{ flex: 1, marginHorizontal: 16, marginTop: 16 }}
+        style={{ height: Math.round(height * 0.38), marginHorizontal: 16, marginTop: 16 }}
       />
 
-      {/* controls */}
       <View
         className="flex-row items-center justify-center px-4"
-        style={{ paddingTop: 18, paddingBottom: insets.bottom + 96 }}
+        style={{ paddingTop: 8, paddingBottom: insets.bottom * 0.5 }}
       >
         <Pressable
           onPress={() => capture()}
@@ -68,16 +54,31 @@ export default function ForageCapture() {
         >
           <View className="h-[58px] w-[58px] rounded-full border-2 border-citron" />
         </Pressable>
+      </View>
+
+      <View className="mx-4 mb-0 rounded-[22px] border border-border bg-surface p-4">
         <Pressable
-          onPress={() => router.push("/forage/finds")}
-          className="absolute right-8 h-12 w-12 items-center justify-center rounded-2xl border border-border bg-surface"
+          onPress={() => router.push("/add/photos")}
+          className="mb-3 rounded-[18px] border border-border bg-paper px-4 py-3"
         >
-          <Ionicons name="images-outline" size={20} color={tokens.forest} />
+          <View className="flex-row items-center gap-3">
+            <Ionicons name="images-outline" size={18} color={tokens.forest} />
+            <Text className="font-body text-[15px] text-forest">Choose from Photos</Text>
+          </View>
+        </Pressable>
+        <Pressable
+          onPress={() => router.push("/add/manual")}
+          className="rounded-[18px] border border-border bg-paper px-4 py-3"
+        >
+          <View className="flex-row items-center gap-3">
+            <Ionicons name="pencil-outline" size={18} color={tokens.forest} />
+            <Text className="font-body text-[15px] text-forest">Add manually</Text>
+          </View>
         </Pressable>
       </View>
 
       <Text className="absolute bottom-[76px] w-full text-center font-body text-[11px] text-secondary">
-        Field ID aid only — never eat on an app&apos;s word alone.
+        {"Field ID aid only — never eat on an app\'s word alone."}
       </Text>
     </View>
   );
