@@ -181,8 +181,9 @@ export default function ForageResult() {
             <Text className="font-display text-[15px] text-rust">Toxic lookalike to know</Text>
           </View>
           {result.toxic_lookalikes.map((l) => (
-            <Text key={l} className="font-body text-[13px] text-forest">
-              • {l}
+            <Text key={l.common_name} className="font-body text-[13px] text-forest">
+              • {l.common_name}
+              {l.scientific_name ? ` (${l.scientific_name})` : ""}
             </Text>
           ))}
         </View>

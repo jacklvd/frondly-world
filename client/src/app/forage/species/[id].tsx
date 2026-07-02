@@ -105,9 +105,19 @@ export default function ForageSpecies() {
           <SectionLabel text="TOXIC LOOKALIKES" />
           <View className="gap-2 rounded-[16px] bg-blushBg p-3.5">
             {r.toxic_lookalikes.map((l) => (
-              <View key={l} className="flex-row gap-2">
+              <View key={l.common_name} className="flex-row gap-2">
                 <Ionicons name="warning" size={13} color={tokens.rust} style={{ marginTop: 2 }} />
-                <Text className="flex-1 font-body text-[13px] text-forest">{l}</Text>
+                <View className="flex-1">
+                  <Text className="font-body text-[13px] font-semibold text-forest">
+                    {l.common_name}
+                    {l.scientific_name ? ` (${l.scientific_name})` : ""}
+                  </Text>
+                  {l.how_to_tell_apart ? (
+                    <Text className="mt-0.5 font-body text-[12px] text-secondary">
+                      {l.how_to_tell_apart}
+                    </Text>
+                  ) : null}
+                </View>
               </View>
             ))}
           </View>

@@ -20,6 +20,18 @@ export type ForageFacts = {
   range?: string;
 };
 
+// server/data/forage_pnw.json entries: toxic_lookalikes carries the "how to
+// tell apart" comparison the spec calls for, so it's a richer object than
+// benign_lookalikes (plain display strings — dataset has no comparison notes
+// for those, since there's nothing dangerous to tell apart).
+export type ForageLookalike = {
+  common_name: string;
+  scientific_name?: string;
+  severity?: "toxic" | "deadly";
+  why_confused?: string;
+  how_to_tell_apart?: string;
+};
+
 export type ForageResult = {
   state: ForageState;
   confidence: number; // 0.0–1.0
@@ -27,7 +39,7 @@ export type ForageResult = {
   scientific_name?: string | null;
   edibility?: string | null;
   facts?: ForageFacts | null;
-  toxic_lookalikes: string[];
+  toxic_lookalikes: ForageLookalike[];
   benign_lookalikes: string[];
   safety_caveat?: string | null;
   warning?: string | null; // verified_toxic
