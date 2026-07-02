@@ -20,6 +20,11 @@ export type ForageFacts = {
   range?: string;
 };
 
+// server/data/forage_pnw.json entries: toxic_lookalikes carries the "how to
+// tell apart" comparison the spec calls for, so it's a richer object than
+// benign_lookalikes (plain display strings — dataset has no comparison notes
+// for those, since there's nothing dangerous to tell apart). Typed as a union
+// since either shape can show up depending on the field.
 export type ForageLookalike =
   | string
   | {
@@ -89,15 +94,15 @@ export async function identifyPhoto(uri: string): Promise<ForageResult> {
   const body = await new Promise<string>((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", `${API_BASE}/forage/identify`);
-    xhr.timeout = 20000; //20s
-    xhr.ontimeout = () =>
-      reject(new Error("Identify timed out. Check the server and adb reverse tcp:8000.")); // Change to "Check the connection" if we add a network check.
+    xhr.timeout = 20_000;
     xhr.onload = () =>
       xhr.status >= 200 && xhr.status < 300
         ? resolve(xhr.responseText)
         : reject(new Error(`Identify failed (${xhr.status}).`));
     xhr.onerror = () =>
       reject(new Error("Network error — is the server running and adb reverse tcp:8000 set?"));
+    xhr.ontimeout = () =>
+      reject(new Error("Identify timed out. Check the server and adb reverse tcp:8000."));
     xhr.send(form);
   });
 

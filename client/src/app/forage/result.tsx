@@ -6,6 +6,7 @@ import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-nati
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Chip } from "@/components/ui/chip";
+import { SafetyStrip } from "@/components/ui/safety-strip";
 import { SectionLabel } from "@/components/ui/section-label";
 import { tokens } from "@/constants/tokens";
 import {
@@ -27,10 +28,7 @@ export default function ForageResult() {
   const [errorMsg, setErrorMsg] = useState(photo ? "" : "No photo to identify.");
 
   useEffect(() => {
-    if (!photo) {
-      return;
-    }
-
+    if (!photo) return;
     let cancelled = false;
     identifyPhoto(photo)
       .then((r) => {
@@ -291,21 +289,6 @@ function PrimaryButton({
       <Ionicons name={icon} size={16} color={tokens.citron} />
       <Text className="font-body text-[15px] font-semibold text-white">{label}</Text>
     </Pressable>
-  );
-}
-
-// The standing, non-dismissable safety disclaimer from the server.
-function SafetyStrip({ text }: { text: string }) {
-  return (
-    <View className="flex-row items-start gap-2 rounded-[12px] bg-stoneBg p-3">
-      <Ionicons
-        name="shield-checkmark"
-        size={14}
-        color={tokens.secondary}
-        style={{ marginTop: 1 }}
-      />
-      <Text className="flex-1 font-body text-[11px] text-secondary">{text}</Text>
-    </View>
   );
 }
 

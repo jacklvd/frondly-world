@@ -4,9 +4,23 @@ import { Pressable, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Chip } from "@/components/ui/chip";
+import { SafetyStrip } from "@/components/ui/safety-strip";
 import { SectionLabel } from "@/components/ui/section-label";
+import type { ColorToken } from "@/constants/tokens";
 import { tokens } from "@/constants/tokens";
-import { buildForageSpeciesId, formatLookalike, getLastResult } from "@/forage/api";
+import {
+  buildForageSpeciesId,
+  formatLookalike,
+  getLastResult,
+  type ForageState,
+} from "@/forage/api";
+
+const STATUS_CHIP: Record<ForageState, { text: string; bg: ColorToken; fg: ColorToken }> = {
+  verified_edible: { text: "Edible", bg: "mintBg", fg: "leafText" },
+  verified_toxic: { text: "Do not eat", bg: "blushBg", fg: "rust" },
+  unverified: { text: "Unverified", bg: "stoneBg", fg: "secondary" },
+  low_confidence: { text: "Low confidence", bg: "blushBg", fg: "rust" },
+};
 
 // Forage Species Detail — ports ForageDetailView. Renders the full curated info
 // from the last identification (facts, lookalikes, safety caveat, sources).
@@ -85,35 +99,7 @@ export default function ForageSpecies() {
             </Text>
           ) : null}
         </View>
-        <Chip
-          text={
-            r.state === "verified_edible"
-              ? "Edible"
-              : r.state === "verified_toxic"
-                ? "Do not eat"
-                : r.state === "unverified"
-                  ? "Unverified"
-                  : "Caution"
-          }
-          bg={
-            r.state === "verified_edible"
-              ? "mintBg"
-              : r.state === "verified_toxic"
-                ? "blushBg"
-                : r.state === "unverified"
-                  ? "stoneBg"
-                  : "blushBg"
-          }
-          fg={
-            r.state === "verified_edible"
-              ? "leafText"
-              : r.state === "verified_toxic"
-                ? "rust"
-                : r.state === "unverified"
-                  ? "secondary"
-                  : "rust"
-          }
-        />
+        <Chip {...STATUS_CHIP[r.state]} />
       </View>
 
       {/* quick facts */}
@@ -136,14 +122,25 @@ export default function ForageSpecies() {
         <View className="gap-2.5">
           <SectionLabel text="TOXIC LOOKALIKES" />
           <View className="gap-2 rounded-[16px] bg-blushBg p-3.5">
-            {r.toxic_lookalikes.map((l, index) => (
-              <View key={`${formatLookalike(l)}-${index}`} className="flex-row gap-2">
-                <Ionicons name="warning" size={13} color={tokens.rust} style={{ marginTop: 2 }} />
-                <Text className="flex-1 font-body text-[13px] text-forest">
-                  {formatLookalike(l)}
-                </Text>
-              </View>
-            ))}
+            {r.toxic_lookalikes.map((l, index) => {
+              const howToTellApart =
+                typeof l === "object" && l !== null ? l.how_to_tell_apart : null;
+              return (
+                <View key={`${formatLookalike(l)}-${index}`} className="flex-row gap-2">
+                  <Ionicons name="warning" size={13} color={tokens.rust} style={{ marginTop: 2 }} />
+                  <View className="flex-1">
+                    <Text className="font-body text-[13px] font-semibold text-forest">
+                      {formatLookalike(l)}
+                    </Text>
+                    {howToTellApart ? (
+                      <Text className="mt-0.5 font-body text-[12px] text-secondary">
+                        {howToTellApart}
+                      </Text>
+                    ) : null}
+                  </View>
+                </View>
+              );
+            })}
           </View>
         </View>
       ) : null}
@@ -181,16 +178,8 @@ export default function ForageSpecies() {
           Sources: {r.sources.join(", ")}
         </Text>
       ) : null}
-      {/* safety strip (standing, non-dismissable disclaimer) */}
-      <View className="flex-row items-start gap-2 rounded-[12px] bg-stoneBg p-3">
-        <Ionicons
-          name="shield-checkmark"
-          size={14}
-          color={tokens.secondary}
-          style={{ marginTop: 1 }}
-        />
-        <Text className="flex-1 font-body text-[11px] text-secondary">{r.safety_strip}</Text>
-      </View>
+
+      <SafetyStrip text={r.safety_strip} />
     </ScrollView>
   );
 }

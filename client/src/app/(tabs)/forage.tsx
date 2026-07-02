@@ -17,7 +17,8 @@ export default function ForageCapture() {
   const cameraRef = useRef<CameraView>(null);
 
   // Capture a photo and hand it to the result screen, which uploads it to the
-  // backend for identification.
+  // backend for identification. No-ops (rather than navigating without a
+  // photo) if the camera isn't ready or the capture fails.
   async function capture() {
     if (!permission?.granted || !cameraRef.current) return;
     try {
